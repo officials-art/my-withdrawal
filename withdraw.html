@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Withdraw</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .withdraw-box {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .language-box {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+        }
+
+        #languageSelect {
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #172554;
+            margin-bottom: 8px;
+        }
+
+        .withdraw-text {
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .balance-box {
+            background: #172554;
+            color: white;
+            padding: 18px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .balance-box strong {
+            display: block;
+            font-size: 28px;
+            margin-top: 5px;
+        }
+
+        .withdraw-amount {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .withdraw-amount span {
+            display: block;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .withdraw-amount strong {
+            font-size: 24px;
+            color: #172554;
+        }
+
+        /* COUNTRY CHARGES BOARD */
+
+        .charges-board {
+            margin-bottom: 25px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .charges-title {
+            background: #172554;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: bold;
+        }
+
+        .charges-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 15px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 14px;
+        }
+
+        .charges-row:first-of-type {
+            border-top: none;
+        }
+
+        .country {
+            font-weight: bold;
+        }
+
+        .charge {
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 18px;
+            font-size: 15px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #16a34a;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #15803d;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #172554;
+            text-decoration: none;
+        }
+
+        .success {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #dcfce7;
+            color: #166534;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .error {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            background: #fee2e2;
+            color: #dc2626;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="withdraw-box">
+
+        <!-- LANGUAGE -->
+
+        <div class="language-box">
+            <select id="languageSelect">
+                <option value="en">🇬🇧 English</option>
+                <option value="es">🇪🇸 Español</option>
+            </select>
+        </div>
+
+        <h2 id="withdrawTitle">
+            💸 Withdrawal Section
+        </h2>
+
+        <p class="withdraw-text" id="withdrawSubtitle">
+            Enter your details to continue.
+        </p>
+
+        <!-- BALANCE -->
+
+        <div class="balance-box">
+            <span id="balanceLabel">
+                Available Balance
+            </span>
+
+            <strong id="balance">
+                $5,000
+            </strong>
+        </div>
+
+        <!-- DEFAULT WITHDRAWAL AMOUNT -->
+
+        <div class="withdraw-amount">
+
+            <span id="withdrawAmountLabel">
+                Withdrawal Amount
+            </span>
+
+            <strong>
+                $5,000
+            </strong>
+
+        </div>
+
+        <!-- COUNTRY / CHARGES BOARD -->
+
+        <div class="charges-board">
+
+            <div class="charges-title" id="chargesTitle">
+                Country & Charges
+            </div>
+
+            <div class="charges-row">
+                <span class="country" id="spain">
+                    🇪🇸 Spain
+                </span>
+
+                <span class="charge">
+                    €200
+                </span>
+            </div>
+
+            <div class="charges-row">
+                <span class="country" id="mexico">
+                    🇲🇽 Mexico
+                </span>
+
+                <span class="charge">
+                    $2,000
+                </span>
+            </div>
+
+            <div class="charges-row">
+                <span class="country" id="usa">
+                    🇺🇸 USA
+                </span>
+
+                <span class="charge">
+                    $200
+                </span>
+            </div>
+
+            <div class="charges-row">
+                <span class="country" id="canada">
+                    🇨🇦 Canada
+                </span>
+
+                <span class="charge">
+                    $200
+                </span>
+            </div>
+
+            <div class="charges-row">
+                <span class="country" id="netherlands">
+                    🇳🇱 Netherlands
+                </span>
+
+                <span class="charge">
+                    €200
+                </span>
+            </div>
+
+        </div>
+
+        <!-- WITHDRAW FORM -->
+
+        <form id="withdrawForm">
+
+            <label for="accountNumber" id="accountNumberLabel">
+                Account number:
+            </label>
+
+            <input
+                type="text"
+                id="accountNumber"
+                placeholder="Enter account number"
+                required
+            >
+
+            <label for="bankName" id="bankNameLabel">
+                Bank name:
+            </label>
+
+            <input
+                type="text"
+                id="bankName"
+                placeholder="Enter bank name"
+                required
+            >
+
+            <label for="code" id="codeLabel">
+                Apple code:
+            </label>
+
+            <input
+                type="text"
+                id="code"
+                placeholder="Enter Apple code"
+                required
+            >
+
+            <button
+                type="submit"
+                class="submit-btn"
+                id="submitButton">
+                Submit
+            </button>
+
+        </form>
+
+        <!-- ERROR -->
+
+        <div class="error" id="errorMessage"></div>
+
+        <!-- SUCCESS -->
+
+        <div class="success" id="successMessage">
+            ✅ Withdrawal request submitted
+        </div>
+
+        <a
+            href="dashboard.html"
+            class="back-btn"
+            id="backButton">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+    <script>
+
+        /* =========================
+           LANGUAGE SYSTEM
+        ========================= */
+
+        const translations = {
+
+            en: {
+
+                withdrawTitle:
+                    "💸 Withdrawal Section",
+
+                withdrawSubtitle:
+                    "Enter your details to continue.",
+
+                balanceLabel:
+                    "Available Balance",
+
+                withdrawAmountLabel:
+                    "Withdrawal Amount",
+
+                chargesTitle:
+                    "Country & Charges",
+
+                spain:
+                    "🇪🇸 Spain",
+
+                mexico:
+                    "🇲🇽 Mexico",
+
+                usa:
+                    "🇺🇸 USA",
+
+                canada:
+                    "🇨🇦 Canada",
+
+                netherlands:
+                    "🇳🇱 Netherlands",
+
+                accountNumberLabel:
+                    "Account number:",
+
+                bankNameLabel:
+                    "Bank name:",
+
+                codeLabel:
+                    "Apple code:",
+
+                accountNumberPlaceholder:
+                    "Enter account number",
+
+                bankNamePlaceholder:
+                    "Enter bank name",
+
+                codePlaceholder:
+                    "Enter Apple code",
+
+                submitButton:
+                    "Submit",
+
+                backButton:
+                    "← Back to Dashboard",
+
+                emptyFields:
+                    "Please complete all fields.",
+
+                incorrectCode:
+                    "Incorrect Apple code.",
+
+                insufficientBalance:
+                    "Insufficient balance.",
+
+                success:
+                    "✅ Withdrawal request submitted"
+            },
+
+
+            es: {
+
+                withdrawTitle:
+                    "💸 Sección de retiros",
+
+                withdrawSubtitle:
+                    "Ingresa tus datos para continuar.",
+
+                balanceLabel:
+                    "Saldo disponible",
+
+                withdrawAmountLabel:
+                    "Monto del retiro",
+
+                chargesTitle:
+                    "País y cargos",
+
+                spain:
+                    "🇪🇸 España",
+
+                mexico:
+                    "🇲🇽 México",
+
+                usa:
+                    "🇺🇸 Estados Unidos",
+
+                canada:
+                    "🇨🇦 Canadá",
+
+                netherlands:
+                    "🇳🇱 Países Bajos",
+
+                accountNumberLabel:
+                    "Número de cuenta:",
+
+                bankNameLabel:
+                    "Nombre del banco:",
+
+                codeLabel:
+                    "Código de Apple:",
+
+                accountNumberPlaceholder:
+                    "Ingresa el número de cuenta",
+
+                bankNamePlaceholder:
+                    "Ingresa el nombre del banco",
+
+                codePlaceholder:
+                    "Ingresa el código de Apple",
+
+                submitButton:
+                    "Enviar",
+
+                backButton:
+                    "← Volver al panel",
+
+                emptyFields:
+                    "Completa todos los campos.",
+
+                incorrectCode:
+                    "Código de Apple incorrecto.",
+
+                insufficientBalance:
+                    "Saldo insuficiente.",
+
+                success:
+                    "✅ Solicitud de retiro enviada"
+            }
+
+        };
+
+
+        const languageSelect =
+            document.getElementById("languageSelect");
+
+
+        function setLanguage(language) {
+
+            const t =
+                translations[language];
+
+
+            document.getElementById(
+                "withdrawTitle"
+            ).textContent =
+                t.withdrawTitle;
+
+
+            document.getElementById(
+                "withdrawSubtitle"
+            ).textContent =
+                t.withdrawSubtitle;
+
+
+            document.getElementById(
+                "balanceLabel"
+            ).textContent =
+                t.balanceLabel;
+
+
+            document.getElementById(
+                "withdrawAmountLabel"
+            ).textContent =
+                t.withdrawAmountLabel;
+
+
+            document.getElementById(
+                "chargesTitle"
+            ).textContent =
+                t.chargesTitle;
+
+
+            document.getElementById(
+                "spain"
+            ).textContent =
+                t.spain;
+
+
+            document.getElementById(
+                "mexico"
+            ).textContent =
+                t.mexico;
+
+
+            document.getElementById(
+                "usa"
+            ).textContent =
+                t.usa;
+
+
+            document.getElementById(
+                "canada"
+            ).textContent =
+                t.canada;
+
+
+            document.getElementById(
+                "netherlands"
+            ).textContent =
+                t.netherlands;
+
+
+            document.getElementById(
+                "accountNumberLabel"
+            ).textContent =
+                t.accountNumberLabel;
+
+
+            document.getElementById(
+                "bankNameLabel"
+            ).textContent =
+                t.bankNameLabel;
+
+
+            document.getElementById(
+                "codeLabel"
+            ).textContent =
+                t.codeLabel;
+
+
+            document.getElementById(
+                "accountNumber"
+            ).placeholder =
+                t.accountNumberPlaceholder;
+
+
+            document.getElementById(
+                "bankName"
+            ).placeholder =
+                t.bankNamePlaceholder;
+
+
+            document.getElementById(
+                "code"
+            ).placeholder =
+                t.codePlaceholder;
+
+
+            document.getElementById(
+                "submitButton"
+            ).textContent =
+                t.submitButton;
+
+
+            document.getElementById(
+                "backButton"
+            ).textContent =
+                t.backButton;
+
+
+            localStorage.setItem(
+                "language",
+                language
+            );
+
+        }
+
+
+        /* LOAD SAVED LANGUAGE */
+
+        const savedLanguage =
+            localStorage.getItem("language") || "en";
+
+
+        languageSelect.value =
+            savedLanguage;
+
+
+        setLanguage(savedLanguage);
+
+
+        languageSelect.addEventListener(
+            "change",
+            function() {
+
+                setLanguage(
+                    this.value
+                );
+
+            }
+        );
+
+
+        /* =========================
+           DEFAULT WITHDRAWAL
+        ========================= */
+
+        const withdrawalAmount = 5000;
+
+
+        /* =========================
+           ACCOUNT BALANCE
+        ========================= */
+
+        function getBalance() {
+
+            return Number(
+                localStorage.getItem(
+                    "accountBalance"
+                )
+            ) || 5000;
+
+        }
+
+
+        function displayBalance() {
+
+            document.getElementById(
+                "balance"
+            ).textContent =
+                "$" +
+                getBalance().toLocaleString();
+
+        }
+
+
+        displayBalance();
+
+
+        /* =========================
+           WITHDRAW FORM
+        ========================= */
+
+        document.getElementById(
+            "withdrawForm"
+        ).addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const accountNumber =
+                    document.getElementById(
+                        "accountNumber"
+                    ).value.trim();
+
+
+                const bankName =
+                    document.getElementById(
+                        "bankName"
+                    ).value.trim();
+
+
+                const code =
+                    document.getElementById(
+                        "code"
+                    ).value.trim();
+
+
+                const error =
+                    document.getElementById(
+                        "errorMessage"
+                    );
+
+
+                const success =
+                    document.getElementById(
+                        "successMessage"
+                    );
+
+
+                const language =
+                    localStorage.getItem(
+                        "language"
+                    ) || "en";
+
+
+                const t =
+                    translations[language];
+
+
+                error.style.display =
+                    "none";
+
+                success.style.display =
+                    "none";
+
+
+                /* CHECK EMPTY FIELDS */
+
+                if (
+                    accountNumber === "" ||
+                    bankName === "" ||
+                    code === ""
+                ) {
+
+                    error.textContent =
+                        t.emptyFields;
+
+                    error.style.display =
+                        "block";
+
+                    return;
+
+                }
+
+
+                /* CHECK APPLE CODE */
+
+                if (
+                    code !== "17844379"
+                ) {
+
+                    error.textContent =
+                        t.incorrectCode;
+
+                    error.style.display =
+                        "block";
+
+                    return;
+
+                }
+
+
+                /* CHECK BALANCE */
+
+                const currentBalance =
+                    getBalance();
+
+
+                if (
+                    currentBalance <
+                    withdrawalAmount
+                ) {
+
+                    error.textContent =
+                        t.insufficientBalance;
+
+                    error.style.display =
+                        "block";
+
+                    return;
+
+                }
+
+
+                /* UPDATE BALANCE */
+
+                const newBalance =
+                    currentBalance -
+                    withdrawalAmount;
+
+
+                localStorage.setItem(
+                    "accountBalance",
+                    String(newBalance)
+                );
+
+
+                /* SUCCESS */
+
+                success.textContent =
+                    t.success;
+
+                success.style.display =
+                    "block";
+
+
+                displayBalance();
+
+
+                /* CLEAR FORM */
+
+                document.getElementById(
+                    "withdrawForm"
+                ).reset();
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

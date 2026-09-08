@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title id="pageTitle">Sign Up</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 20px;
+        }
+
+        .signup-box {
+            width: 100%;
+            max-width: 380px;
+            background: white;
+            padding: 35px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .language {
+            text-align: right;
+            margin-bottom: 15px;
+        }
+
+        .language select {
+            padding: 7px 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #667eea;
+        }
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box input {
+            padding-right: 50px;
+        }
+
+        .password-box button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #667eea;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .message {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 22px;
+            color: #777;
+        }
+
+        .login-link a {
+            color: #667eea;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="signup-box">
+
+        <!-- LANGUAGE -->
+        <div class="language">
+
+            <select id="languageSelect"
+                onchange="changeLanguage()">
+
+                <option value="en">🇬🇧 English</option>
+                <option value="es">🇪🇸 Español</option>
+
+            </select>
+
+        </div>
+
+
+        <h1 id="createAccount">
+            Create Account 🚀
+        </h1>
+
+        <p class="subtitle" id="subtitle">
+            Sign up to get started
+        </p>
+
+
+        <form id="signupForm">
+
+            <div class="input-group">
+
+                <label id="nameLabel">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label id="emailLabel">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label id="passwordLabel">
+                    Password
+                </label>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        onclick="togglePassword('password')"
+                    >
+                        👁️
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label id="confirmPasswordLabel">
+                    Confirm Password
+                </label>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm your password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        onclick="togglePassword('confirmPassword')"
+                    >
+                        👁️
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="signup-btn"
+                type="submit"
+                id="signupButton"
+            >
+                Create Account
+            </button>
+
+        </form>
+
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+
+        <div class="login-link">
+
+            <span id="alreadyAccount">
+                Already have an account?
+            </span>
+
+            <a href="index.html" id="loginLink">
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =========================
+           LANGUAGE SYSTEM
+        ========================= */
+
+        const translations = {
+
+            en: {
+
+                title: "Sign Up",
+
+                createAccount:
+                    "Create Account 🚀",
+
+                subtitle:
+                    "Sign up to get started",
+
+                fullName:
+                    "Full Name",
+
+                namePlaceholder:
+                    "Enter your full name",
+
+                email:
+                    "Email",
+
+                emailPlaceholder:
+                    "Enter your email",
+
+                password:
+                    "Password",
+
+                passwordPlaceholder:
+                    "Create a password",
+
+                confirmPassword:
+                    "Confirm Password",
+
+                confirmPlaceholder:
+                    "Confirm your password",
+
+                create:
+                    "Create Account",
+
+                already:
+                    "Already have an account?",
+
+                login:
+                    "Login",
+
+                mismatch:
+                    "Passwords do not match!",
+
+                success:
+                    "Account created successfully! 🎉"
+
+            },
+
+
+            es: {
+
+                title:
+                    "Registrarse",
+
+                createAccount:
+                    "Crear cuenta 🚀",
+
+                subtitle:
+                    "Regístrate para comenzar",
+
+                fullName:
+                    "Nombre completo",
+
+                namePlaceholder:
+                    "Introduce tu nombre completo",
+
+                email:
+                    "Correo electrónico",
+
+                emailPlaceholder:
+                    "Introduce tu correo electrónico",
+
+                password:
+                    "Contraseña",
+
+                passwordPlaceholder:
+                    "Crea una contraseña",
+
+                confirmPassword:
+                    "Confirmar contraseña",
+
+                confirmPlaceholder:
+                    "Confirma tu contraseña",
+
+                create:
+                    "Crear cuenta",
+
+                already:
+                    "¿Ya tienes una cuenta?",
+
+                login:
+                    "Iniciar sesión",
+
+                mismatch:
+                    "¡Las contraseñas no coinciden!",
+
+                success:
+                    "¡Cuenta creada correctamente! 🎉"
+
+            }
+
+        };
+
+
+        let currentLanguage =
+            localStorage.getItem("language") || "en";
+
+
+        function applyLanguage() {
+
+            const t =
+                translations[currentLanguage];
+
+
+            document.documentElement.lang =
+                currentLanguage;
+
+
+            document.getElementById("languageSelect")
+                .value = currentLanguage;
+
+
+            document.getElementById("pageTitle")
+                .textContent = t.title;
+
+
+            document.getElementById("createAccount")
+                .textContent = t.createAccount;
+
+
+            document.getElementById("subtitle")
+                .textContent = t.subtitle;
+
+
+            document.getElementById("nameLabel")
+                .textContent = t.fullName;
+
+
+            document.getElementById("name")
+                .placeholder = t.namePlaceholder;
+
+
+            document.getElementById("emailLabel")
+                .textContent = t.email;
+
+
+            document.getElementById("email")
+                .placeholder = t.emailPlaceholder;
+
+
+            document.getElementById("passwordLabel")
+                .textContent = t.password;
+
+
+            document.getElementById("password")
+                .placeholder = t.passwordPlaceholder;
+
+
+            document.getElementById("confirmPasswordLabel")
+                .textContent = t.confirmPassword;
+
+
+            document.getElementById("confirmPassword")
+                .placeholder = t.confirmPlaceholder;
+
+
+            document.getElementById("signupButton")
+                .textContent = t.create;
+
+
+            document.getElementById("alreadyAccount")
+                .textContent = t.already;
+
+
+            document.getElementById("loginLink")
+                .textContent = t.login;
+
+        }
+
+
+        function changeLanguage() {
+
+            currentLanguage =
+                document.getElementById(
+                    "languageSelect"
+                ).value;
+
+
+            localStorage.setItem(
+                "language",
+                currentLanguage
+            );
+
+
+            applyLanguage();
+
+        }
+
+
+        /* =========================
+           PASSWORD
+        ========================= */
+
+        function togglePassword(id) {
+
+            const input =
+                document.getElementById(id);
+
+
+            if (input.type === "password") {
+
+                input.type = "text";
+
+            } else {
+
+                input.type = "password";
+
+            }
+
+        }
+
+
+        /* =========================
+           PASSWORD HASH
+        ========================= */
+
+        async function hashPassword(password) {
+
+            const encoder =
+                new TextEncoder();
+
+            const data =
+                encoder.encode(password);
+
+            const hash =
+                await crypto.subtle.digest(
+                    "SHA-256",
+                    data
+                );
+
+            return Array.from(
+                new Uint8Array(hash)
+            )
+            .map(
+                byte =>
+                byte.toString(16).padStart(2, "0")
+            )
+            .join("");
+
+        }
+
+
+        /* =========================
+           SIGN UP
+        ========================= */
+
+        document
+            .getElementById("signupForm")
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+                    event.preventDefault();
+
+
+                    const t =
+                        translations[currentLanguage];
+
+
+                    const name =
+                        document
+                        .getElementById("name")
+                        .value
+                        .trim();
+
+
+                    const email =
+                        document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+
+                    const password =
+                        document
+                        .getElementById("password")
+                        .value;
+
+
+                    const confirmPassword =
+                        document
+                        .getElementById("confirmPassword")
+                        .value;
+
+
+                    const message =
+                        document
+                        .getElementById("message");
+
+
+                    if (
+                        password !==
+                        confirmPassword
+                    ) {
+
+                        message.textContent =
+                            t.mismatch;
+
+
+                        message.className =
+                            "message error";
+
+
+                        message.style.display =
+                            "block";
+
+
+                        return;
+
+                    }
+
+
+                    const passwordHash =
+                        await hashPassword(password);
+
+
+                    const account = {
+
+                        name: name,
+
+                        email: email,
+
+                        passwordHash:
+                            passwordHash
+
+                    };
+
+
+                    localStorage.setItem(
+                        "demoAccount",
+                        JSON.stringify(account)
+                    );
+
+
+                    message.textContent =
+                        t.success;
+
+
+                    message.className =
+                        "message success";
+
+
+                    message.style.display =
+                        "block";
+
+
+                    setTimeout(function() {
+
+                        window.location.href =
+                            "index.html";
+
+                    }, 1500);
+
+                }
+            );
+
+
+        /* =========================
+           START LANGUAGE
+        ========================= */
+
+        applyLanguage();
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title id="pageTitle">Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 20px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            padding: 35px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .language {
+            text-align: right;
+            margin-bottom: 15px;
+        }
+
+        .language select {
+            padding: 7px 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #667eea;
+        }
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box input {
+            padding-right: 65px;
+        }
+
+        .password-box button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: #667eea;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #667eea;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            opacity: 0.9;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 18px;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #2e7d32;
+        }
+
+        .error {
+            color: #c62828;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 22px;
+            color: #777;
+        }
+
+        .signup-link a {
+            color: #667eea;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="login-box">
+
+        <div class="language">
+            <select id="languageSelect" onchange="changeLanguage()">
+                <option value="en">🇬🇧 English</option>
+                <option value="es">🇪🇸 Español</option>
+            </select>
+        </div>
+
+        <h1 id="welcome">Welcome Back 👋</h1>
+
+        <p class="subtitle" id="subtitle">
+            Login to your account
+        </p>
+
+        <form id="loginForm">
+
+            <div class="input-group">
+
+                <label id="emailLabel">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label id="passwordLabel">Password</label>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        id="showButton"
+                        onclick="togglePassword()"
+                    >
+                        Show
+                    </button>
+
+                </div>
+
+            </div>
+
+            <button
+                type="submit"
+                class="login-btn"
+                id="loginButton"
+            >
+                Login
+            </button>
+
+        </form>
+
+        <p id="message" class="message"></p>
+
+        <p class="signup-link">
+
+            <span id="noAccount">Don't have an account?</span>
+
+            <a href="signup.html" id="signupLink">
+                Sign up
+            </a>
+
+        </p>
+
+    </div>
+
+
+    <script>
+
+        const translations = {
+
+            en: {
+                title: "Login",
+                welcome: "Welcome Back 👋",
+                subtitle: "Login to your account",
+                email: "Email",
+                emailPlaceholder: "Enter your email",
+                password: "Password",
+                passwordPlaceholder: "Enter your password",
+                show: "Show",
+                hide: "Hide",
+                login: "Login",
+                noAccount: "Don't have an account?",
+                signup: "Sign up",
+                noAccountFound: "No account found. Please sign up first.",
+                incorrect: "Incorrect email or password.",
+                success: "Login successful! 🎉 Welcome, "
+            },
+
+            es: {
+                title: "Iniciar sesión",
+                welcome: "¡Bienvenido de nuevo! 👋",
+                subtitle: "Inicia sesión en tu cuenta",
+                email: "Correo electrónico",
+                emailPlaceholder: "Introduce tu correo electrónico",
+                password: "Contraseña",
+                passwordPlaceholder: "Introduce tu contraseña",
+                show: "Mostrar",
+                hide: "Ocultar",
+                login: "Iniciar sesión",
+                noAccount: "¿No tienes una cuenta?",
+                signup: "Registrarse",
+                noAccountFound: "No se encontró ninguna cuenta. Regístrate primero.",
+                incorrect: "Correo electrónico o contraseña incorrectos.",
+                success: "¡Inicio de sesión exitoso! 🎉 Bienvenido, "
+            }
+
+        };
+
+
+        let currentLanguage =
+            localStorage.getItem("language") || "en";
+
+
+        function applyLanguage() {
+
+            const t = translations[currentLanguage];
+
+            document.documentElement.lang =
+                currentLanguage;
+
+            document.getElementById("pageTitle")
+                .textContent = t.title;
+
+            document.getElementById("welcome")
+                .textContent = t.welcome;
+
+            document.getElementById("subtitle")
+                .textContent = t.subtitle;
+
+            document.getElementById("emailLabel")
+                .textContent = t.email;
+
+            document.getElementById("email")
+                .placeholder = t.emailPlaceholder;
+
+            document.getElementById("passwordLabel")
+                .textContent = t.password;
+
+            document.getElementById("password")
+                .placeholder = t.passwordPlaceholder;
+
+            document.getElementById("loginButton")
+                .textContent = t.login;
+
+            document.getElementById("noAccount")
+                .textContent = t.noAccount;
+
+            document.getElementById("signupLink")
+                .textContent = t.signup;
+
+            const button =
+                document.getElementById("showButton");
+
+            button.textContent =
+                document.getElementById("password").type === "text"
+                    ? t.hide
+                    : t.show;
+
+            document.getElementById("languageSelect")
+                .value = currentLanguage;
+        }
+
+
+        function changeLanguage() {
+
+            currentLanguage =
+                document.getElementById("languageSelect").value;
+
+            localStorage.setItem(
+                "language",
+                currentLanguage
+            );
+
+            applyLanguage();
+        }
+
+
+        function togglePassword() {
+
+            const password =
+                document.getElementById("password");
+
+            const button =
+                document.getElementById("showButton");
+
+            const t = translations[currentLanguage];
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                button.textContent = t.hide;
+
+            } else {
+
+                password.type = "password";
+
+                button.textContent = t.show;
+
+            }
+
+        }
+
+
+        async function hashPassword(password) {
+
+            const encoder =
+                new TextEncoder();
+
+            const data =
+                encoder.encode(password);
+
+            const hash =
+                await crypto.subtle.digest(
+                    "SHA-256",
+                    data
+                );
+
+            return Array.from(
+                new Uint8Array(hash)
+            )
+            .map(
+                byte =>
+                    byte
+                        .toString(16)
+                        .padStart(2, "0")
+            )
+            .join("");
+
+        }
+
+
+        document
+            .getElementById("loginForm")
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+                    event.preventDefault();
+
+                    const t =
+                        translations[currentLanguage];
+
+                    const email =
+                        document
+                        .getElementById("email")
+                        .value
+                        .trim()
+                        .toLowerCase();
+
+                    const password =
+                        document
+                        .getElementById("password")
+                        .value;
+
+                    const message =
+                        document
+                        .getElementById("message");
+
+                    const savedAccount =
+                        localStorage.getItem(
+                            "demoAccount"
+                        );
+
+                    if (!savedAccount) {
+
+                        message.textContent =
+                            t.noAccountFound;
+
+                        message.className =
+                            "message error";
+
+                        return;
+                    }
+
+                    const account =
+                        JSON.parse(savedAccount);
+
+                    const passwordHash =
+                        await hashPassword(password);
+
+                    if (
+                        account.email
+                        .toLowerCase() === email &&
+                        account.passwordHash === passwordHash
+                    ) {
+
+                        message.textContent =
+                            t.success + account.name + "!";
+
+                        message.className =
+                            "message success";
+
+                        setTimeout(function() {
+
+                            window.location.href =
+                                "dashboard.html";
+
+                        }, 1000);
+
+                    } else {
+
+                        message.textContent =
+                            t.incorrect;
+
+                        message.className =
+                            "message error";
+
+                    }
+
+                }
+            );
+
+
+        applyLanguage();
+
+    </script>
+
+</body>
+
+</html>
