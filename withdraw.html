@@ -94,8 +94,6 @@
             color: #172554;
         }
 
-        /* COUNTRY CHARGES BOARD */
-
         .charges-board {
             margin-bottom: 25px;
             border: 1px solid #e2e8f0;
@@ -111,23 +109,30 @@
             font-weight: bold;
         }
 
-        .charges-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 15px;
-            border-top: 1px solid #e2e8f0;
+        .location-content {
+            padding: 18px 15px;
+            text-align: center;
+            line-height: 1.8;
             font-size: 14px;
         }
 
-        .charges-row:first-of-type {
-            border-top: none;
+        .user-name {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #172554;
         }
 
-        .country {
+        .country-line {
             font-weight: bold;
         }
 
-        .charge {
+        .international-line {
+            margin-top: 3px;
+        }
+
+        .charge-line {
+            margin-top: 8px;
             font-weight: bold;
         }
 
@@ -199,8 +204,6 @@
 
     <div class="withdraw-box">
 
-        <!-- LANGUAGE -->
-
         <div class="language-box">
             <select id="languageSelect">
                 <option value="en">🇬🇧 English</option>
@@ -216,9 +219,8 @@
             Enter your details to continue.
         </p>
 
-        <!-- BALANCE -->
-
         <div class="balance-box">
+
             <span id="balanceLabel">
                 Available Balance
             </span>
@@ -226,9 +228,8 @@
             <strong id="balance">
                 $5,000
             </strong>
-        </div>
 
-        <!-- DEFAULT WITHDRAWAL AMOUNT -->
+        </div>
 
         <div class="withdraw-amount">
 
@@ -242,67 +243,33 @@
 
         </div>
 
-        <!-- COUNTRY / CHARGES BOARD -->
-
         <div class="charges-board">
 
             <div class="charges-title" id="chargesTitle">
                 Country & Charges
             </div>
 
-            <div class="charges-row">
-                <span class="country" id="spain">
-                    🇪🇸 Spain
-                </span>
+            <div class="location-content">
 
-                <span class="charge">
-                    €200
-                </span>
-            </div>
+                <div class="user-name" id="userFullName">
+                    User
+                </div>
 
-            <div class="charges-row">
-                <span class="country" id="mexico">
-                    🇲🇽 Mexico
-                </span>
+                <div class="country-line" id="countryLine">
+                    Your selected country is Mexico 🇲🇽
+                </div>
 
-                <span class="charge">
-                    $2,000
-                </span>
-            </div>
+                <div class="international-line" id="internationalLine">
+                    International charges may apply
+                </div>
 
-            <div class="charges-row">
-                <span class="country" id="usa">
-                    🇺🇸 USA
-                </span>
+                <div class="charge-line" id="giftcardCharge">
+                    Apple code - $200
+                </div>
 
-                <span class="charge">
-                    $200
-                </span>
-            </div>
-
-            <div class="charges-row">
-                <span class="country" id="canada">
-                    🇨🇦 Canada
-                </span>
-
-                <span class="charge">
-                    $200
-                </span>
-            </div>
-
-            <div class="charges-row">
-                <span class="country" id="netherlands">
-                    🇳🇱 Netherlands
-                </span>
-
-                <span class="charge">
-                    €200
-                </span>
             </div>
 
         </div>
-
-        <!-- WITHDRAW FORM -->
 
         <form id="withdrawForm">
 
@@ -348,11 +315,7 @@
 
         </form>
 
-        <!-- ERROR -->
-
         <div class="error" id="errorMessage"></div>
-
-        <!-- SUCCESS -->
 
         <div class="success" id="successMessage">
             ✅ Withdrawal request submitted
@@ -367,7 +330,52 @@
 
     </div>
 
+
     <script>
+
+        /* =========================
+           GET SIGNED-UP USER NAME
+        ========================= */
+
+        function displayUserName() {
+
+            const savedAccount =
+                localStorage.getItem("demoAccount");
+
+            if (!savedAccount) {
+
+                document.getElementById(
+                    "userFullName"
+                ).textContent = "User";
+
+                return;
+            }
+
+            try {
+
+                const account =
+                    JSON.parse(savedAccount);
+
+                const fullName =
+                    account.name;
+
+                document.getElementById(
+                    "userFullName"
+                ).textContent =
+                    fullName || "User";
+
+            } catch (error) {
+
+                document.getElementById(
+                    "userFullName"
+                ).textContent = "User";
+
+            }
+
+        }
+
+        displayUserName();
+
 
         /* =========================
            LANGUAGE SYSTEM
@@ -392,20 +400,14 @@
                 chargesTitle:
                     "Country & Charges",
 
-                spain:
-                    "🇪🇸 Spain",
+                countryLine:
+                    "Your selected country is Mexico 🇲🇽",
 
-                mexico:
-                    "🇲🇽 Mexico",
+                internationalLine:
+                    "International charges may apply",
 
-                usa:
-                    "🇺🇸 USA",
-
-                canada:
-                    "🇨🇦 Canada",
-
-                netherlands:
-                    "🇳🇱 Netherlands",
+                giftcardCharge:
+                    "Apple code - $200",
 
                 accountNumberLabel:
                     "Account number:",
@@ -434,14 +436,15 @@
                 emptyFields:
                     "Please complete all fields.",
 
-                incorrectCode:
-                    "Incorrect Apple code.",
-
                 insufficientBalance:
                     "Insufficient balance.",
 
+                incorrectCode:
+                    "Incorrect Apple code.",
+
                 success:
                     "✅ Withdrawal request submitted"
+
             },
 
 
@@ -462,20 +465,14 @@
                 chargesTitle:
                     "País y cargos",
 
-                spain:
-                    "🇪🇸 España",
+                countryLine:
+                    "Tu país seleccionado es México 🇲🇽",
 
-                mexico:
-                    "🇲🇽 México",
+                internationalLine:
+                    "Pueden aplicarse cargos internacionales",
 
-                usa:
-                    "🇺🇸 Estados Unidos",
-
-                canada:
-                    "🇨🇦 Canadá",
-
-                netherlands:
-                    "🇳🇱 Países Bajos",
+                giftcardCharge:
+                    "Código Apple - $200",
 
                 accountNumberLabel:
                     "Número de cuenta:",
@@ -484,7 +481,7 @@
                     "Nombre del banco:",
 
                 codeLabel:
-                    "Código de Apple:",
+                    "Código Apple:",
 
                 accountNumberPlaceholder:
                     "Ingresa el número de cuenta",
@@ -493,7 +490,7 @@
                     "Ingresa el nombre del banco",
 
                 codePlaceholder:
-                    "Ingresa el código de Apple",
+                    "Ingresa el código Apple",
 
                 submitButton:
                     "Enviar",
@@ -504,21 +501,24 @@
                 emptyFields:
                     "Completa todos los campos.",
 
-                incorrectCode:
-                    "Código de Apple incorrecto.",
-
                 insufficientBalance:
                     "Saldo insuficiente.",
 
+                incorrectCode:
+                    "Código Apple incorrecto.",
+
                 success:
                     "✅ Solicitud de retiro enviada"
+
             }
 
         };
 
 
         const languageSelect =
-            document.getElementById("languageSelect");
+            document.getElementById(
+                "languageSelect"
+            );
 
 
         function setLanguage(language) {
@@ -526,114 +526,85 @@
             const t =
                 translations[language];
 
-
             document.getElementById(
                 "withdrawTitle"
             ).textContent =
                 t.withdrawTitle;
-
 
             document.getElementById(
                 "withdrawSubtitle"
             ).textContent =
                 t.withdrawSubtitle;
 
-
             document.getElementById(
                 "balanceLabel"
             ).textContent =
                 t.balanceLabel;
-
 
             document.getElementById(
                 "withdrawAmountLabel"
             ).textContent =
                 t.withdrawAmountLabel;
 
-
             document.getElementById(
                 "chargesTitle"
             ).textContent =
                 t.chargesTitle;
 
+            document.getElementById(
+                "countryLine"
+            ).textContent =
+                t.countryLine;
 
             document.getElementById(
-                "spain"
+                "internationalLine"
             ).textContent =
-                t.spain;
-
+                t.internationalLine;
 
             document.getElementById(
-                "mexico"
+                "giftcardCharge"
             ).textContent =
-                t.mexico;
-
-
-            document.getElementById(
-                "usa"
-            ).textContent =
-                t.usa;
-
-
-            document.getElementById(
-                "canada"
-            ).textContent =
-                t.canada;
-
-
-            document.getElementById(
-                "netherlands"
-            ).textContent =
-                t.netherlands;
-
+                t.giftcardCharge;
 
             document.getElementById(
                 "accountNumberLabel"
             ).textContent =
                 t.accountNumberLabel;
 
-
             document.getElementById(
                 "bankNameLabel"
             ).textContent =
                 t.bankNameLabel;
-
 
             document.getElementById(
                 "codeLabel"
             ).textContent =
                 t.codeLabel;
 
-
             document.getElementById(
                 "accountNumber"
             ).placeholder =
                 t.accountNumberPlaceholder;
-
 
             document.getElementById(
                 "bankName"
             ).placeholder =
                 t.bankNamePlaceholder;
 
-
             document.getElementById(
                 "code"
             ).placeholder =
                 t.codePlaceholder;
-
 
             document.getElementById(
                 "submitButton"
             ).textContent =
                 t.submitButton;
 
-
             document.getElementById(
                 "backButton"
             ).textContent =
                 t.backButton;
-
 
             localStorage.setItem(
                 "language",
@@ -643,22 +614,21 @@
         }
 
 
-        /* LOAD SAVED LANGUAGE */
-
         const savedLanguage =
-            localStorage.getItem("language") || "en";
-
+            localStorage.getItem(
+                "language"
+            ) || "en";
 
         languageSelect.value =
             savedLanguage;
 
-
-        setLanguage(savedLanguage);
-
+        setLanguage(
+            savedLanguage
+        );
 
         languageSelect.addEventListener(
             "change",
-            function() {
+            function () {
 
                 setLanguage(
                     this.value
@@ -672,7 +642,16 @@
            DEFAULT WITHDRAWAL
         ========================= */
 
-        const withdrawalAmount = 5000;
+        const withdrawalAmount =
+            5000;
+
+
+        /* =========================
+           APPLE CODE
+        ========================= */
+
+        const correctAppleCode =
+            "17844379";
 
 
         /* =========================
@@ -712,50 +691,42 @@
             "withdrawForm"
         ).addEventListener(
             "submit",
-            function(event) {
+            function (event) {
 
                 event.preventDefault();
-
 
                 const accountNumber =
                     document.getElementById(
                         "accountNumber"
                     ).value.trim();
 
-
                 const bankName =
                     document.getElementById(
                         "bankName"
                     ).value.trim();
-
 
                 const code =
                     document.getElementById(
                         "code"
                     ).value.trim();
 
-
                 const error =
                     document.getElementById(
                         "errorMessage"
                     );
-
 
                 const success =
                     document.getElementById(
                         "successMessage"
                     );
 
-
                 const language =
                     localStorage.getItem(
                         "language"
                     ) || "en";
 
-
                 const t =
                     translations[language];
-
 
                 error.style.display =
                     "none";
@@ -786,7 +757,7 @@
                 /* CHECK APPLE CODE */
 
                 if (
-                    code !== "17844379"
+                    code !== correctAppleCode
                 ) {
 
                     error.textContent =
@@ -804,7 +775,6 @@
 
                 const currentBalance =
                     getBalance();
-
 
                 if (
                     currentBalance <
@@ -828,7 +798,6 @@
                     currentBalance -
                     withdrawalAmount;
 
-
                 localStorage.setItem(
                     "accountBalance",
                     String(newBalance)
@@ -842,7 +811,6 @@
 
                 success.style.display =
                     "block";
-
 
                 displayBalance();
 
