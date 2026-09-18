@@ -20,6 +20,10 @@
             min-height: 100vh;
         }
 
+        /* =========================
+           SIDEBAR
+        ========================= */
+
         .sidebar {
             width: 240px;
             height: 100vh;
@@ -29,6 +33,7 @@
             left: 0;
             top: 0;
             padding: 20px;
+            z-index: 20;
         }
 
         .logo {
@@ -74,17 +79,80 @@
             background: #dc2626;
         }
 
+        /* =========================
+           MAIN
+        ========================= */
+
         .main {
             margin-left: 240px;
             padding: 25px;
         }
 
+        /* =========================
+           TOP CONTROLS
+           MENU + PROFILE SAME LINE
+        ========================= */
+
+        .top-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        /* MOBILE MENU */
+
+        .mobile-menu {
+            display: none;
+        }
+
+        .mobile-menu button {
+            background: #172554;
+            color: white;
+            border: none;
+            padding: 12px 17px;
+            border-radius: 8px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        /* PROFILE */
+
+        .profile-button {
+            background: #172554;
+            color: white;
+            border: none;
+            padding: 13px 22px;
+            border-radius: 9px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .profile-button:hover {
+            background: #2563eb;
+        }
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
         .topbar {
             background: white;
-            padding: 18px;
+            padding: 25px;
             border-radius: 12px;
             margin-bottom: 25px;
         }
+
+        .topbar h2 {
+            color: #172554;
+            font-size: 32px;
+        }
+
+        /* =========================
+           PAGES
+        ========================= */
 
         .page {
             display: none;
@@ -93,6 +161,10 @@
         .page.active {
             display: block;
         }
+
+        /* =========================
+           WELCOME
+        ========================= */
 
         .welcome {
             background: white;
@@ -103,8 +175,18 @@
 
         .welcome h2 {
             color: #172554;
-            margin-bottom: 8px;
+            margin-bottom: 15px;
+            font-size: 30px;
         }
+
+        .welcome p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           BALANCE
+        ========================= */
 
         .balance-card {
             background: #172554;
@@ -115,19 +197,19 @@
         }
 
         .balance-title {
-            font-size: 15px;
-            opacity: 0.8;
+            font-size: 18px;
+            opacity: 0.85;
         }
 
         .balance-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin: 10px 0 20px;
+            margin: 15px 0 20px;
         }
 
         .balance {
-            font-size: 35px;
+            font-size: 45px;
             font-weight: bold;
         }
 
@@ -135,9 +217,10 @@
             border: none;
             background: white;
             color: #172554;
-            padding: 8px 12px;
-            border-radius: 7px;
+            padding: 12px 18px;
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 16px;
         }
 
         .withdraw-btn {
@@ -155,6 +238,10 @@
         .withdraw-btn:hover {
             background: #15803d;
         }
+
+        /* =========================
+           ADDRESS
+        ========================= */
 
         .address-card {
             background: white;
@@ -174,6 +261,10 @@
             word-break: break-all;
             color: #172554;
         }
+
+        /* =========================
+           STATUS CARDS
+        ========================= */
 
         .cards {
             display: flex;
@@ -201,6 +292,10 @@
             color: #16a34a;
         }
 
+        /* =========================
+           PROFILE / SETTINGS
+        ========================= */
+
         .profile-box,
         .notification-box,
         .settings-box {
@@ -208,6 +303,10 @@
             padding: 25px;
             border-radius: 12px;
         }
+
+        /* =========================
+           NOTIFICATIONS
+        ========================= */
 
         .notification {
             padding: 15px;
@@ -235,16 +334,15 @@
             cursor: pointer;
         }
 
-        .mobile-menu {
-            display: none;
-        }
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 700px) {
 
             .sidebar {
                 left: -240px;
                 transition: 0.3s;
-                z-index: 10;
             }
 
             .sidebar.show {
@@ -256,18 +354,57 @@
                 padding: 15px;
             }
 
+            /*
+              MENU AND PROFILE
+              STAY ON SAME STRAIGHT LINE
+            */
+
+            .top-controls {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
             .mobile-menu {
                 display: block;
-                margin-bottom: 15px;
+                margin: 0;
             }
 
             .mobile-menu button {
-                background: #172554;
-                color: white;
-                border: none;
-                padding: 10px 15px;
-                border-radius: 7px;
-                font-size: 20px;
+                padding: 12px 17px;
+                font-size: 22px;
+            }
+
+            .profile-button {
+                padding: 12px 20px;
+                font-size: 15px;
+            }
+
+            .topbar {
+                padding: 25px;
+                margin-bottom: 20px;
+            }
+
+            .topbar h2 {
+                font-size: 30px;
+            }
+
+            .welcome {
+                padding: 25px;
+            }
+
+            .welcome h2 {
+                font-size: 28px;
+            }
+
+            .welcome p {
+                font-size: 17px;
+            }
+
+            .balance {
+                font-size: 40px;
             }
 
             .cards {
@@ -280,6 +417,7 @@
 <body>
 
     <!-- SIDEBAR -->
+
     <aside class="sidebar" id="sidebar">
 
         <div class="logo">
@@ -287,54 +425,104 @@
         </div>
 
         <div class="language">
-            <select id="languageSelect" onchange="changeLanguage()">
-                <option value="en">🇬🇧 English</option>
-                <option value="es">🇪🇸 Español</option>
+
+            <select id="languageSelect"
+                onchange="changeLanguage()">
+
+                <option value="en">
+                    🇬🇧 English
+                </option>
+
+                <option value="es">
+                    🇪🇸 Español
+                </option>
+
             </select>
+
         </div>
 
         <div class="menu">
 
-            <button class="active" onclick="showPage('home', this)">
-                🏠 <span data-i18n="home">Home</span>
+            <button class="active"
+                onclick="showPage('home', this)">
+
+                🏠 Home
+
             </button>
 
-            <button onclick="showPage('profile', this)">
-                👤 <span data-i18n="profile">Profile</span>
-            </button>
+            <button
+                onclick="showPage('notifications', this)">
 
-            <button onclick="showPage('notifications', this)">
-                🔔 <span data-i18n="notifications">Notifications</span>
+                🔔 Notifications
                 <span id="notificationBadge"></span>
+
             </button>
 
-            <button onclick="showPage('settings', this)">
-                ⚙️ <span data-i18n="settings">Settings</span>
+            <button
+                onclick="showPage('settings', this)">
+
+                ⚙️ Settings
+
             </button>
 
         </div>
 
-        <button class="logout" onclick="logout()">
-            🚪 <span data-i18n="logout">Logout</span>
+        <button class="logout"
+            onclick="logout()">
+
+            🚪 Logout
+
         </button>
 
     </aside>
 
 
     <!-- MAIN -->
+
     <main class="main">
 
-        <div class="mobile-menu">
-            <button onclick="toggleMenu()">☰</button>
+        <!-- MENU + PROFILE SAME LINE -->
+
+        <div class="top-controls">
+
+            <!-- MENU -->
+
+            <div class="mobile-menu">
+
+                <button onclick="toggleMenu()">
+                    ☰
+                </button>
+
+            </div>
+
+
+            <!-- PROFILE -->
+
+            <button class="profile-button"
+                onclick="showPage('profile', null)">
+
+                👤 Profile
+
+            </button>
+
         </div>
 
+
+        <!-- CONGRATULATIONS -->
+
         <div class="topbar">
-            <h2 id="pageTitle">Congratulations 🎊</h2>
+
+            <h2 id="pageTitle">
+                Congratulations 🎊
+            </h2>
+
         </div>
 
 
         <!-- HOME -->
-        <section id="home" class="page active">
+
+        <section id="home"
+            class="page active">
 
             <div class="welcome">
 
@@ -342,8 +530,9 @@
                     Welcome! 👋
                 </h2>
 
-                <p data-i18n="dashboardWelcome">
-                    Welcome to your personal dashboard.<br>
+                <p>
+                    Welcome to your personal dashboard.
+                    <br>
                     Balance has been added, process your withdraw now.
                 </p>
 
@@ -351,23 +540,28 @@
 
 
             <!-- BALANCE -->
+
             <div class="balance-card">
 
-                <div class="balance-title"
-                    data-i18n="availableBalance">
+                <div class="balance-title">
                     Available Balance
                 </div>
 
                 <div class="balance-row">
 
-                    <div class="balance" id="balance">
+                    <div class="balance"
+                        id="balance">
+
                         $5,000
+
                     </div>
 
                     <button class="hide-btn"
                         id="hideButton"
                         onclick="toggleBalance()">
+
                         👁️ Hide
+
                     </button>
 
                 </div>
@@ -376,7 +570,7 @@
                 <button class="withdraw-btn"
                     onclick="goToWithdraw()">
 
-                    💸 <span data-i18n="withdraw">Withdraw</span>
+                    💸 Withdraw
 
                 </button>
 
@@ -384,9 +578,10 @@
 
 
             <!-- ADDRESS -->
+
             <div class="address-card">
 
-                <h3 data-i18n="address">
+                <h3>
                     Address
                 </h3>
 
@@ -398,11 +593,12 @@
 
 
             <!-- STATUS -->
+
             <div class="cards">
 
                 <div class="card">
 
-                    <h3 data-i18n="security">
+                    <h3>
                         Security
                     </h3>
 
@@ -415,12 +611,11 @@
 
                 <div class="card">
 
-                    <h3 data-i18n="status">
+                    <h3>
                         Status
                     </h3>
 
-                    <div class="number active-status"
-                        data-i18n="active">
+                    <div class="number active-status">
                         Active
                     </div>
 
@@ -432,30 +627,42 @@
 
 
         <!-- PROFILE -->
-        <section id="profile" class="page">
+
+        <section id="profile"
+            class="page">
 
             <div class="profile-box">
 
-                <h2 data-i18n="profileTitle">
+                <h2>
                     👤 Profile
                 </h2>
 
                 <br>
 
                 <p>
-                    <strong data-i18n="name">Name:</strong>
+
+                    <strong>
+                        Name:
+                    </strong>
+
                     <span id="profileName">
                         User
                     </span>
+
                 </p>
 
                 <br>
 
                 <p>
-                    <strong data-i18n="email">Email:</strong>
+
+                    <strong>
+                        Email:
+                    </strong>
+
                     <span id="profileEmail">
                         user@email.com
                     </span>
+
                 </p>
 
             </div>
@@ -464,23 +671,25 @@
 
 
         <!-- NOTIFICATIONS -->
-        <section id="notifications" class="page">
+
+        <section id="notifications"
+            class="page">
 
             <div class="notification-box">
 
-                <h2 data-i18n="notificationsTitle">
+                <h2>
                     🔔 Notifications
                 </h2>
 
                 <br>
 
-                <div id="notificationList"></div>
+                <div id="notificationList">
+                </div>
 
                 <br>
 
                 <button class="clear-btn"
-                    onclick="clearNotifications()"
-                    data-i18n="clearNotifications">
+                    onclick="clearNotifications()">
 
                     Clear Notifications
 
@@ -492,23 +701,25 @@
 
 
         <!-- SETTINGS -->
-        <section id="settings" class="page">
+
+        <section id="settings"
+            class="page">
 
             <div class="settings-box">
 
-                <h2 data-i18n="settingsTitle">
+                <h2>
                     ⚙️ Settings
                 </h2>
 
                 <br>
 
-                <p data-i18n="emailNotifications">
+                <p>
                     Email notifications: ON
                 </p>
 
                 <br>
 
-                <p data-i18n="accountSecurity">
+                <p>
                     Account security: Enabled
                 </p>
 
@@ -521,191 +732,15 @@
 
     <script>
 
-        const translations = {
-
-            en: {
-
-                dashboard: "Congratulations 🎊",
-                home: "Home",
-                profile: "Profile",
-                notifications: "Notifications",
-                settings: "Settings",
-                logout: "Logout",
-
-                welcome: "Welcome! 👋",
-                welcomeUser: "Welcome, ",
-
-                dashboardWelcome:
-                    "Welcome to your personal dashboard. Balance has been added, process your withdraw now.",
-
-                availableBalance:
-                    "Available Balance",
-
-                hide: "👁️ Hide",
-                show: "👁️ Show",
-
-                withdraw: "Withdraw",
-
-                address: "Address",
-
-                security: "Security",
-                status: "Status",
-                active: "Active",
-
-                profileTitle: "👤 Profile",
-                name: "Name:",
-                email: "Email:",
-
-                notificationsTitle:
-                    "🔔 Notifications",
-
-                clearNotifications:
-                    "Clear Notifications",
-
-                noNotifications:
-                    "No notifications 🔕",
-
-                delete:
-                    "Delete",
-
-                settingsTitle:
-                    "⚙️ Settings",
-
-                emailNotifications:
-                    "Email notifications: ON",
-
-                accountSecurity:
-                    "Account security: Enabled"
-            },
-
-
-            es: {
-
-                dashboard: "¡Felicidades 🎊",
-                home: "Inicio",
-                profile: "Perfil",
-                notifications: "Notificaciones",
-                settings: "Configuración",
-                logout: "Cerrar sesión",
-
-                welcome: "¡Bienvenido! 👋",
-                welcomeUser: "¡Bienvenido, ",
-
-                dashboardWelcome:
-                    "Bienvenido a tu panel personal. El saldo ha sido añadido, procesa tu retiro ahora.",
-
-                availableBalance:
-                    "Saldo disponible",
-
-                hide: "👁️ Ocultar",
-                show: "👁️ Mostrar",
-
-                withdraw: "Retirar",
-
-                address: "Dirección",
-
-                security: "Seguridad",
-                status: "Estado",
-                active: "Activo",
-
-                profileTitle: "👤 Perfil",
-                name: "Nombre:",
-                email: "Correo electrónico:",
-
-                notificationsTitle:
-                    "🔔 Notificaciones",
-
-                clearNotifications:
-                    "Borrar notificaciones",
-
-                noNotifications:
-                    "No hay notificaciones 🔕",
-
-                delete:
-                    "Eliminar",
-
-                settingsTitle:
-                    "⚙️ Configuración",
-
-                emailNotifications:
-                    "Notificaciones por correo: ACTIVADAS",
-
-                accountSecurity:
-                    "Seguridad de la cuenta: Activada"
-            }
-
-        };
-
-
-        let currentLanguage =
-            localStorage.getItem("language") || "en";
-
-
-        function applyLanguage() {
-
-            const t =
-                translations[currentLanguage];
-
-            document.documentElement.lang =
-                currentLanguage;
-
-            document.title =
-                t.dashboard;
-
-            document
-                .querySelectorAll("[data-i18n]")
-                .forEach(function(element) {
-
-                    const key =
-                        element.getAttribute("data-i18n");
-
-                    if (t[key]) {
-                        element.textContent = t[key];
-                    }
-
-                });
-
-            updatePageTitle();
-
-            updateWelcomeMessage();
-
-            const hideButton =
-                document.getElementById("hideButton");
-
-            if (hideButton) {
-
-                hideButton.textContent =
-                    balanceHidden
-                        ? t.show
-                        : t.hide;
-            }
-
-            displayNotifications();
-        }
-
-
-        function changeLanguage() {
-
-            currentLanguage =
-                document.getElementById(
-                    "languageSelect"
-                ).value;
-
-            localStorage.setItem(
-                "language",
-                currentLanguage
-            );
-
-            applyLanguage();
-        }
-
-
-        /* ACCOUNT */
+        /* =========================
+           ACCOUNT
+        ========================= */
 
         const savedAccount =
             localStorage.getItem("demoAccount");
 
         let accountName = "User";
+
 
         if (savedAccount) {
 
@@ -722,40 +757,51 @@
             document.getElementById("profileEmail")
                 .textContent =
                 account.email;
+
         }
 
 
-        function updateWelcomeMessage() {
+        /* =========================
+           WELCOME
+        ========================= */
 
-            const t =
-                translations[currentLanguage];
+        document.getElementById("welcomeMessage")
+            .textContent =
 
-            document.getElementById("welcomeMessage")
-                .textContent =
-                savedAccount
-                    ? t.welcomeUser + accountName + "! 👋"
-                    : t.welcome;
-        }
+            savedAccount
+
+                ? "Welcome, "
+                    + accountName
+                    + "! 👋"
+
+                : "Welcome! 👋";
 
 
-        /* BALANCE */
+        /* =========================
+           BALANCE
+        ========================= */
 
         if (
-            localStorage.getItem("demoBalance") === null
+            localStorage.getItem("demoBalance")
+            === null
         ) {
 
             localStorage.setItem(
                 "demoBalance",
                 "5000"
             );
+
         }
 
 
         function getBalance() {
 
             return Number(
-                localStorage.getItem("demoBalance")
+                localStorage.getItem(
+                    "demoBalance"
+                )
             );
+
         }
 
 
@@ -763,14 +809,20 @@
 
             document.getElementById("balance")
                 .textContent =
-                "$" + getBalance().toLocaleString();
+
+                "$"
+                + getBalance()
+                    .toLocaleString();
+
         }
 
 
         updateBalance();
 
 
-        /* HIDE / SHOW BALANCE */
+        /* =========================
+           HIDE / SHOW BALANCE
+        ========================= */
 
         let balanceHidden = false;
 
@@ -778,21 +830,25 @@
         function toggleBalance() {
 
             const balance =
-                document.getElementById("balance");
+                document.getElementById(
+                    "balance"
+                );
 
             const button =
-                document.getElementById("hideButton");
+                document.getElementById(
+                    "hideButton"
+                );
 
-            const t =
-                translations[currentLanguage];
 
             if (balanceHidden) {
 
                 balance.textContent =
-                    "$" + getBalance().toLocaleString();
+                    "$"
+                    + getBalance()
+                        .toLocaleString();
 
                 button.textContent =
-                    t.hide;
+                    "👁️ Hide";
 
                 balanceHidden = false;
 
@@ -802,23 +858,30 @@
                     "••••••";
 
                 button.textContent =
-                    t.show;
+                    "👁️ Show";
 
                 balanceHidden = true;
+
             }
+
         }
 
 
-        /* WITHDRAW */
+        /* =========================
+           WITHDRAW
+        ========================= */
 
         function goToWithdraw() {
 
             window.location.href =
                 "withdraw.html";
+
         }
 
 
-        /* PAGE NAVIGATION */
+        /* =========================
+           PAGE NAVIGATION
+        ========================= */
 
         let currentPage = "home";
 
@@ -827,81 +890,138 @@
 
             currentPage = pageId;
 
-            const pages =
-                document.querySelectorAll(".page");
 
-            pages.forEach(function(page) {
-                page.classList.remove("active");
-            });
+            document
+                .querySelectorAll(".page")
+                .forEach(function(page) {
 
-            document.getElementById(pageId)
+                    page.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+            document
+                .getElementById(pageId)
                 .classList.add("active");
 
-            const buttons =
-                document.querySelectorAll(".menu button");
 
-            buttons.forEach(function(btn) {
-                btn.classList.remove("active");
-            });
+            if (button) {
 
-            button.classList.add("active");
+                document
+                    .querySelectorAll(
+                        ".menu button"
+                    )
+                    .forEach(function(btn) {
+
+                        btn.classList.remove(
+                            "active"
+                        );
+
+                    });
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+
 
             updatePageTitle();
 
-            document.getElementById("sidebar")
+
+            document
+                .getElementById("sidebar")
                 .classList.remove("show");
+
         }
 
+
+        /* =========================
+           PAGE TITLE
+        ========================= */
 
         function updatePageTitle() {
 
-            const t =
-                translations[currentLanguage];
-
             const titles = {
 
-                home: t.dashboard,
-                profile: t.profile,
-                notifications: t.notifications,
-                settings: t.settings
+                home:
+                    "Congratulations 🎊",
+
+                profile:
+                    "Profile",
+
+                notifications:
+                    "Notifications",
+
+                settings:
+                    "Settings"
+
             };
 
-            document.getElementById("pageTitle")
+
+            document
+                .getElementById("pageTitle")
                 .textContent =
                 titles[currentPage];
+
         }
 
 
-        /* MOBILE MENU */
+        /* =========================
+           MOBILE MENU
+        ========================= */
 
         function toggleMenu() {
 
-            document.getElementById("sidebar")
+            document
+                .getElementById("sidebar")
                 .classList.toggle("show");
+
         }
 
 
-        /* NOTIFICATIONS */
+        /* =========================
+           NOTIFICATIONS
+        ========================= */
 
         let notifications =
+
             JSON.parse(
-                localStorage.getItem("notifications")
-            ) || [
+                localStorage.getItem(
+                    "notifications"
+                )
+            ) ||
+
+            [
 
                 {
                     id: 1,
-                    text: "Welcome to your dashboard! 🎉",
-                    time: "Just now",
-                    read: false
+
+                    text:
+                        "Welcome to your dashboard! 🎉",
+
+                    time:
+                        "Just now",
+
+                    read:
+                        false
                 },
 
                 {
                     id: 2,
+
                     text:
                         "Your account was created successfully.",
-                    time: "Today",
-                    read: false
+
+                    time:
+                        "Today",
+
+                    read:
+                        false
                 }
+
             ];
 
 
@@ -909,8 +1029,11 @@
 
             localStorage.setItem(
                 "notifications",
-                JSON.stringify(notifications)
+                JSON.stringify(
+                    notifications
+                )
             );
+
         }
 
 
@@ -921,19 +1044,21 @@
                     "notificationList"
                 );
 
-            const t =
-                translations[currentLanguage];
 
             list.innerHTML = "";
 
-            if (notifications.length === 0) {
+
+            if (
+                notifications.length === 0
+            ) {
 
                 list.innerHTML =
-                    "<p>" + t.noNotifications + "</p>";
+                    "<p>No notifications 🔕</p>";
 
                 updateNotificationBadge();
 
                 return;
+
             }
 
 
@@ -941,10 +1066,14 @@
                 function(notification) {
 
                     const item =
-                        document.createElement("div");
+                        document.createElement(
+                            "div"
+                        );
+
 
                     item.className =
                         "notification";
+
 
                     item.innerHTML = `
 
@@ -965,17 +1094,21 @@
                         <button
                             onclick="deleteNotification(${notification.id})">
 
-                            ${t.delete}
+                            Delete
 
                         </button>
 
                     `;
 
+
                     list.appendChild(item);
+
                 }
             );
 
+
             updateNotificationBadge();
+
         }
 
 
@@ -986,11 +1119,15 @@
                     function(notification) {
 
                         return notification.id !== id;
+
                     }
                 );
 
+
             saveNotifications();
+
             displayNotifications();
+
         }
 
 
@@ -999,7 +1136,9 @@
             notifications = [];
 
             saveNotifications();
+
             displayNotifications();
+
         }
 
 
@@ -1010,40 +1149,158 @@
                     "notificationBadge"
                 );
 
+
             const unread =
                 notifications.filter(
                     function(notification) {
 
                         return !notification.read;
+
                     }
                 ).length;
 
+
             badge.textContent =
+
                 unread > 0
+
                     ? " (" + unread + ")"
+
                     : "";
+
         }
 
 
-        /* LOGOUT */
+        /* =========================
+           LOGOUT
+        ========================= */
 
         function logout() {
 
             window.location.href =
                 "index.html";
+
         }
 
 
-        /* START */
+        /* =========================
+           LANGUAGE
+        ========================= */
 
-        document.getElementById("languageSelect")
+        const translations = {
+
+            en: {
+
+                home:
+                    "Home",
+
+                profile:
+                    "Profile",
+
+                notifications:
+                    "Notifications",
+
+                settings:
+                    "Settings",
+
+                logout:
+                    "Logout"
+
+            },
+
+            es: {
+
+                home:
+                    "Inicio",
+
+                profile:
+                    "Perfil",
+
+                notifications:
+                    "Notificaciones",
+
+                settings:
+                    "Configuración",
+
+                logout:
+                    "Cerrar sesión"
+
+            }
+
+        };
+
+
+        let currentLanguage =
+            localStorage.getItem(
+                "language"
+            ) || "en";
+
+
+        function applyLanguage() {
+
+            const t =
+                translations[
+                    currentLanguage
+                ];
+
+
+            document
+                .querySelectorAll(
+                    "[data-i18n]"
+                )
+                .forEach(
+                    function(element) {
+
+                        const key =
+                            element
+                                .getAttribute(
+                                    "data-i18n"
+                                );
+
+                        if (t[key]) {
+
+                            element.textContent =
+                                t[key];
+
+                        }
+
+                    }
+                );
+
+        }
+
+
+        function changeLanguage() {
+
+            currentLanguage =
+                document.getElementById(
+                    "languageSelect"
+                ).value;
+
+
+            localStorage.setItem(
+                "language",
+                currentLanguage
+            );
+
+
+            applyLanguage();
+
+        }
+
+
+        document
+            .getElementById(
+                "languageSelect"
+            )
             .value =
             currentLanguage;
 
-        applyLanguage();
+
+        displayNotifications();
 
     </script>
 
 </body>
 
-    </html>
+</html>
