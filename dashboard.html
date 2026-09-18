@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Dashboard</title>
+    <title>Congratulations 🎊</title>
 
     <style>
         * {
@@ -286,7 +286,6 @@
             MyApp 🚀
         </div>
 
-        <!-- LANGUAGE -->
         <div class="language">
             <select id="languageSelect" onchange="changeLanguage()">
                 <option value="en">🇬🇧 English</option>
@@ -296,8 +295,7 @@
 
         <div class="menu">
 
-            <button class="active"
-                onclick="showPage('home', this)">
+            <button class="active" onclick="showPage('home', this)">
                 🏠 <span data-i18n="home">Home</span>
             </button>
 
@@ -331,7 +329,7 @@
         </div>
 
         <div class="topbar">
-            <h2 id="pageTitle">Dashboard</h2>
+            <h2 id="pageTitle">Congratulations 🎊</h2>
         </div>
 
 
@@ -345,7 +343,8 @@
                 </h2>
 
                 <p data-i18n="dashboardWelcome">
-                    Welcome to your personal dashboard.
+                    Welcome to your personal dashboard.<br>
+                    Balance has been added, process your withdraw now.
                 </p>
 
             </div>
@@ -475,8 +474,7 @@
 
                 <br>
 
-                <div id="notificationList">
-                </div>
+                <div id="notificationList"></div>
 
                 <br>
 
@@ -523,15 +521,11 @@
 
     <script>
 
-        /* =========================
-           LANGUAGE SYSTEM
-        ========================= */
-
         const translations = {
 
             en: {
 
-                dashboard: "Dashboard",
+                dashboard: "Congratulations 🎊",
                 home: "Home",
                 profile: "Profile",
                 notifications: "Notifications",
@@ -540,8 +534,9 @@
 
                 welcome: "Welcome! 👋",
                 welcomeUser: "Welcome, ",
+
                 dashboardWelcome:
-                    "Welcome to your personal dashboard.",
+                    "Welcome to your personal dashboard. Balance has been added, process your withdraw now.",
 
                 availableBalance:
                     "Available Balance",
@@ -581,13 +576,12 @@
 
                 accountSecurity:
                     "Account security: Enabled"
-
             },
 
 
             es: {
 
-                dashboard: "Panel",
+                dashboard: "¡Felicidades 🎊",
                 home: "Inicio",
                 profile: "Perfil",
                 notifications: "Notificaciones",
@@ -596,8 +590,9 @@
 
                 welcome: "¡Bienvenido! 👋",
                 welcomeUser: "¡Bienvenido, ",
+
                 dashboardWelcome:
-                    "Bienvenido a tu panel personal.",
+                    "Bienvenido a tu panel personal. El saldo ha sido añadido, procesa tu retiro ahora.",
 
                 availableBalance:
                     "Saldo disponible",
@@ -637,7 +632,6 @@
 
                 accountSecurity:
                     "Seguridad de la cuenta: Activada"
-
             }
 
         };
@@ -652,14 +646,11 @@
             const t =
                 translations[currentLanguage];
 
-
             document.documentElement.lang =
                 currentLanguage;
 
-
             document.title =
                 t.dashboard;
-
 
             document
                 .querySelectorAll("[data-i18n]")
@@ -674,12 +665,9 @@
 
                 });
 
-
             updatePageTitle();
 
-
             updateWelcomeMessage();
-
 
             const hideButton =
                 document.getElementById("hideButton");
@@ -690,12 +678,9 @@
                     balanceHidden
                         ? t.show
                         : t.hide;
-
             }
 
-
             displayNotifications();
-
         }
 
 
@@ -706,28 +691,21 @@
                     "languageSelect"
                 ).value;
 
-
             localStorage.setItem(
                 "language",
                 currentLanguage
             );
 
-
             applyLanguage();
-
         }
 
 
-        /* =========================
-           ACCOUNT
-        ========================= */
+        /* ACCOUNT */
 
         const savedAccount =
             localStorage.getItem("demoAccount");
 
-
         let accountName = "User";
-
 
         if (savedAccount) {
 
@@ -737,16 +715,13 @@
             accountName =
                 account.name;
 
-
             document.getElementById("profileName")
                 .textContent =
                 account.name;
 
-
             document.getElementById("profileEmail")
                 .textContent =
                 account.email;
-
         }
 
 
@@ -755,19 +730,15 @@
             const t =
                 translations[currentLanguage];
 
-
             document.getElementById("welcomeMessage")
                 .textContent =
                 savedAccount
                     ? t.welcomeUser + accountName + "! 👋"
                     : t.welcome;
-
         }
 
 
-        /* =========================
-           DEMO BALANCE
-        ========================= */
+        /* BALANCE */
 
         if (
             localStorage.getItem("demoBalance") === null
@@ -777,7 +748,6 @@
                 "demoBalance",
                 "5000"
             );
-
         }
 
 
@@ -786,7 +756,6 @@
             return Number(
                 localStorage.getItem("demoBalance")
             );
-
         }
 
 
@@ -795,16 +764,13 @@
             document.getElementById("balance")
                 .textContent =
                 "$" + getBalance().toLocaleString();
-
         }
 
 
         updateBalance();
 
 
-        /* =========================
-           HIDE / SHOW BALANCE
-        ========================= */
+        /* HIDE / SHOW BALANCE */
 
         let balanceHidden = false;
 
@@ -819,7 +785,6 @@
 
             const t =
                 translations[currentLanguage];
-
 
             if (balanceHidden) {
 
@@ -840,27 +805,20 @@
                     t.show;
 
                 balanceHidden = true;
-
             }
-
         }
 
 
-        /* =========================
-           OPEN WITHDRAW PAGE
-        ========================= */
+        /* WITHDRAW */
 
         function goToWithdraw() {
 
             window.location.href =
                 "withdraw.html";
-
         }
 
 
-        /* =========================
-           PAGE NAVIGATION
-        ========================= */
+        /* PAGE NAVIGATION */
 
         let currentPage = "home";
 
@@ -869,42 +827,29 @@
 
             currentPage = pageId;
 
-
             const pages =
                 document.querySelectorAll(".page");
 
-
             pages.forEach(function(page) {
-
                 page.classList.remove("active");
-
             });
-
 
             document.getElementById(pageId)
                 .classList.add("active");
 
-
             const buttons =
                 document.querySelectorAll(".menu button");
 
-
             buttons.forEach(function(btn) {
-
                 btn.classList.remove("active");
-
             });
-
 
             button.classList.add("active");
 
-
             updatePageTitle();
-
 
             document.getElementById("sidebar")
                 .classList.remove("show");
-
         }
 
 
@@ -913,39 +858,30 @@
             const t =
                 translations[currentLanguage];
 
-
             const titles = {
 
                 home: t.dashboard,
                 profile: t.profile,
                 notifications: t.notifications,
                 settings: t.settings
-
             };
-
 
             document.getElementById("pageTitle")
                 .textContent =
                 titles[currentPage];
-
         }
 
 
-        /* =========================
-           MOBILE MENU
-        ========================= */
+        /* MOBILE MENU */
 
         function toggleMenu() {
 
             document.getElementById("sidebar")
                 .classList.toggle("show");
-
         }
 
 
-        /* =========================
-           NOTIFICATIONS
-        ========================= */
+        /* NOTIFICATIONS */
 
         let notifications =
             JSON.parse(
@@ -966,7 +902,6 @@
                     time: "Today",
                     read: false
                 }
-
             ];
 
 
@@ -976,7 +911,6 @@
                 "notifications",
                 JSON.stringify(notifications)
             );
-
         }
 
 
@@ -987,13 +921,10 @@
                     "notificationList"
                 );
 
-
             const t =
                 translations[currentLanguage];
 
-
             list.innerHTML = "";
-
 
             if (notifications.length === 0) {
 
@@ -1003,7 +934,6 @@
                 updateNotificationBadge();
 
                 return;
-
             }
 
 
@@ -1013,10 +943,8 @@
                     const item =
                         document.createElement("div");
 
-
                     item.className =
                         "notification";
-
 
                     item.innerHTML = `
 
@@ -1043,15 +971,11 @@
 
                     `;
 
-
                     list.appendChild(item);
-
                 }
             );
 
-
             updateNotificationBadge();
-
         }
 
 
@@ -1062,14 +986,11 @@
                     function(notification) {
 
                         return notification.id !== id;
-
                     }
                 );
 
-
             saveNotifications();
             displayNotifications();
-
         }
 
 
@@ -1079,7 +1000,6 @@
 
             saveNotifications();
             displayNotifications();
-
         }
 
 
@@ -1090,45 +1010,35 @@
                     "notificationBadge"
                 );
 
-
             const unread =
                 notifications.filter(
                     function(notification) {
 
                         return !notification.read;
-
                     }
                 ).length;
-
 
             badge.textContent =
                 unread > 0
                     ? " (" + unread + ")"
                     : "";
-
         }
 
 
-        /* =========================
-           LOGOUT
-        ========================= */
+        /* LOGOUT */
 
         function logout() {
 
             window.location.href =
                 "index.html";
-
         }
 
 
-        /* =========================
-           START LANGUAGE SYSTEM
-        ========================= */
+        /* START */
 
         document.getElementById("languageSelect")
             .value =
             currentLanguage;
-
 
         applyLanguage();
 
@@ -1136,4 +1046,4 @@
 
 </body>
 
-</html>
+    </html>
