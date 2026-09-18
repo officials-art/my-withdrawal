@@ -90,7 +90,6 @@
 
         /* =========================
            TOP CONTROLS
-           MENU + PROFILE SAME LINE
         ========================= */
 
         .top-controls {
@@ -100,8 +99,6 @@
             width: 100%;
             margin-bottom: 15px;
         }
-
-        /* MOBILE MENU */
 
         .mobile-menu {
             display: none;
@@ -117,7 +114,9 @@
             cursor: pointer;
         }
 
-        /* PROFILE */
+        /* =========================
+           PROFILE
+        ========================= */
 
         .profile-button {
             background: #172554;
@@ -354,11 +353,6 @@
                 padding: 15px;
             }
 
-            /*
-              MENU AND PROFILE
-              STAY ON SAME STRAIGHT LINE
-            */
-
             .top-controls {
                 display: flex;
                 align-items: center;
@@ -416,7 +410,9 @@
 
 <body>
 
-    <!-- SIDEBAR -->
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
 
     <aside class="sidebar" id="sidebar">
 
@@ -426,8 +422,7 @@
 
         <div class="language">
 
-            <select id="languageSelect"
-                onchange="changeLanguage()">
+            <select id="languageSelect" onchange="changeLanguage()">
 
                 <option value="en">
                     🇬🇧 English
@@ -444,48 +439,45 @@
         <div class="menu">
 
             <button class="active"
+                data-i18n="home"
                 onclick="showPage('home', this)">
-
                 🏠 Home
-
             </button>
 
             <button
+                data-i18n="notifications"
                 onclick="showPage('notifications', this)">
-
                 🔔 Notifications
                 <span id="notificationBadge"></span>
-
             </button>
 
             <button
+                data-i18n="settings"
                 onclick="showPage('settings', this)">
-
                 ⚙️ Settings
-
             </button>
 
         </div>
 
-        <button class="logout"
+        <button
+            class="logout"
+            data-i18n="logout"
             onclick="logout()">
-
             🚪 Logout
-
         </button>
 
     </aside>
 
 
-    <!-- MAIN -->
+    <!-- =========================
+         MAIN
+    ========================= -->
 
     <main class="main">
 
         <!-- MENU + PROFILE SAME LINE -->
 
         <div class="top-controls">
-
-            <!-- MENU -->
 
             <div class="mobile-menu">
 
@@ -495,20 +487,17 @@
 
             </div>
 
-
-            <!-- PROFILE -->
-
-            <button class="profile-button"
+            <button
+                class="profile-button"
+                data-i18n="profile"
                 onclick="showPage('profile', null)">
-
                 👤 Profile
-
             </button>
 
         </div>
 
 
-        <!-- CONGRATULATIONS -->
+        <!-- TOP BAR -->
 
         <div class="topbar">
 
@@ -519,10 +508,11 @@
         </div>
 
 
-        <!-- HOME -->
+        <!-- =========================
+             HOME
+        ========================= -->
 
-        <section id="home"
-            class="page active">
+        <section id="home" class="page active">
 
             <div class="welcome">
 
@@ -530,7 +520,7 @@
                     Welcome! 👋
                 </h2>
 
-                <p>
+                <p id="welcomeText">
                     Welcome to your personal dashboard.
                     <br>
                     Balance has been added, process your withdraw now.
@@ -543,35 +533,34 @@
 
             <div class="balance-card">
 
-                <div class="balance-title">
+                <div
+                    class="balance-title"
+                    id="balanceTitle">
                     Available Balance
                 </div>
 
                 <div class="balance-row">
 
-                    <div class="balance"
+                    <div
+                        class="balance"
                         id="balance">
-
                         $5,000
-
                     </div>
 
-                    <button class="hide-btn"
+                    <button
+                        class="hide-btn"
                         id="hideButton"
                         onclick="toggleBalance()">
-
                         👁️ Hide
-
                     </button>
 
                 </div>
 
-
-                <button class="withdraw-btn"
+                <button
+                    class="withdraw-btn"
+                    id="withdrawButton"
                     onclick="goToWithdraw()">
-
                     💸 Withdraw
-
                 </button>
 
             </div>
@@ -581,7 +570,7 @@
 
             <div class="address-card">
 
-                <h3>
+                <h3 id="addressTitle">
                     Address
                 </h3>
 
@@ -598,7 +587,7 @@
 
                 <div class="card">
 
-                    <h3>
+                    <h3 id="securityTitle">
                         Security
                     </h3>
 
@@ -611,11 +600,13 @@
 
                 <div class="card">
 
-                    <h3>
+                    <h3 id="statusTitle">
                         Status
                     </h3>
 
-                    <div class="number active-status">
+                    <div
+                        class="number active-status"
+                        id="activeStatus">
                         Active
                     </div>
 
@@ -626,14 +617,15 @@
         </section>
 
 
-        <!-- PROFILE -->
+        <!-- =========================
+             PROFILE
+        ========================= -->
 
-        <section id="profile"
-            class="page">
+        <section id="profile" class="page">
 
             <div class="profile-box">
 
-                <h2>
+                <h2 id="profileTitle">
                     👤 Profile
                 </h2>
 
@@ -641,7 +633,7 @@
 
                 <p>
 
-                    <strong>
+                    <strong id="nameLabel">
                         Name:
                     </strong>
 
@@ -655,7 +647,7 @@
 
                 <p>
 
-                    <strong>
+                    <strong id="emailLabel">
                         Email:
                     </strong>
 
@@ -670,29 +662,29 @@
         </section>
 
 
-        <!-- NOTIFICATIONS -->
+        <!-- =========================
+             NOTIFICATIONS
+        ========================= -->
 
-        <section id="notifications"
-            class="page">
+        <section id="notifications" class="page">
 
             <div class="notification-box">
 
-                <h2>
+                <h2 id="notificationsTitle">
                     🔔 Notifications
                 </h2>
 
                 <br>
 
-                <div id="notificationList">
-                </div>
+                <div id="notificationList"></div>
 
                 <br>
 
-                <button class="clear-btn"
+                <button
+                    class="clear-btn"
+                    id="clearButton"
                     onclick="clearNotifications()">
-
                     Clear Notifications
-
                 </button>
 
             </div>
@@ -700,26 +692,27 @@
         </section>
 
 
-        <!-- SETTINGS -->
+        <!-- =========================
+             SETTINGS
+        ========================= -->
 
-        <section id="settings"
-            class="page">
+        <section id="settings" class="page">
 
             <div class="settings-box">
 
-                <h2>
+                <h2 id="settingsTitle">
                     ⚙️ Settings
                 </h2>
 
                 <br>
 
-                <p>
+                <p id="emailNotifications">
                     Email notifications: ON
                 </p>
 
                 <br>
 
-                <p>
+                <p id="accountSecurity">
                     Account security: Enabled
                 </p>
 
@@ -741,40 +734,43 @@
 
         let accountName = "User";
 
-
         if (savedAccount) {
 
-            const account =
-                JSON.parse(savedAccount);
+            try {
 
-            accountName =
-                account.name;
+                const account =
+                    JSON.parse(savedAccount);
 
-            document.getElementById("profileName")
-                .textContent =
-                account.name;
+                if (account.name) {
 
-            document.getElementById("profileEmail")
-                .textContent =
-                account.email;
+                    accountName =
+                        account.name;
+
+                    document.getElementById(
+                        "profileName"
+                    ).textContent =
+                        account.name;
+
+                }
+
+                if (account.email) {
+
+                    document.getElementById(
+                        "profileEmail"
+                    ).textContent =
+                        account.email;
+
+                }
+
+            } catch (error) {
+
+                console.log(
+                    "Account data could not be read."
+                );
+
+            }
 
         }
-
-
-        /* =========================
-           WELCOME
-        ========================= */
-
-        document.getElementById("welcomeMessage")
-            .textContent =
-
-            savedAccount
-
-                ? "Welcome, "
-                    + accountName
-                    + "! 👋"
-
-                : "Welcome! 👋";
 
 
         /* =========================
@@ -807,12 +803,11 @@
 
         function updateBalance() {
 
-            document.getElementById("balance")
-                .textContent =
-
-                "$"
-                + getBalance()
-                    .toLocaleString();
+            document.getElementById(
+                "balance"
+            ).textContent =
+                "$" +
+                getBalance().toLocaleString();
 
         }
 
@@ -843,12 +838,8 @@
             if (balanceHidden) {
 
                 balance.textContent =
-                    "$"
-                    + getBalance()
-                        .toLocaleString();
-
-                button.textContent =
-                    "👁️ Hide";
+                    "$" +
+                    getBalance().toLocaleString();
 
                 balanceHidden = false;
 
@@ -857,10 +848,37 @@
                 balance.textContent =
                     "••••••";
 
-                button.textContent =
-                    "👁️ Show";
-
                 balanceHidden = true;
+
+            }
+
+            updateHideButton();
+
+        }
+
+
+        function updateHideButton() {
+
+            const button =
+                document.getElementById(
+                    "hideButton"
+                );
+
+            if (balanceHidden) {
+
+                button.textContent =
+                    "👁️ " +
+                    translations[
+                        currentLanguage
+                    ].show;
+
+            } else {
+
+                button.textContent =
+                    "👁️ " +
+                    translations[
+                        currentLanguage
+                    ].hide;
 
             }
 
@@ -902,9 +920,16 @@
                 });
 
 
-            document
-                .getElementById(pageId)
-                .classList.add("active");
+            const selectedPage =
+                document.getElementById(pageId);
+
+            if (selectedPage) {
+
+                selectedPage.classList.add(
+                    "active"
+                );
+
+            }
 
 
             if (button) {
@@ -939,55 +964,10 @@
 
 
         /* =========================
-           PAGE TITLE
-        ========================= */
-
-        function updatePageTitle() {
-
-            const titles = {
-
-                home:
-                    "Congratulations 🎊",
-
-                profile:
-                    "Profile",
-
-                notifications:
-                    "Notifications",
-
-                settings:
-                    "Settings"
-
-            };
-
-
-            document
-                .getElementById("pageTitle")
-                .textContent =
-                titles[currentPage];
-
-        }
-
-
-        /* =========================
-           MOBILE MENU
-        ========================= */
-
-        function toggleMenu() {
-
-            document
-                .getElementById("sidebar")
-                .classList.toggle("show");
-
-        }
-
-
-        /* =========================
            NOTIFICATIONS
         ========================= */
 
         let notifications =
-
             JSON.parse(
                 localStorage.getItem(
                     "notifications"
@@ -998,26 +978,20 @@
 
                 {
                     id: 1,
-
                     text:
                         "Welcome to your dashboard! 🎉",
-
                     time:
                         "Just now",
-
                     read:
                         false
                 },
 
                 {
                     id: 2,
-
                     text:
                         "Your account was created successfully.",
-
                     time:
                         "Today",
-
                     read:
                         false
                 }
@@ -1044,7 +1018,6 @@
                     "notificationList"
                 );
 
-
             list.innerHTML = "";
 
 
@@ -1053,7 +1026,11 @@
             ) {
 
                 list.innerHTML =
-                    "<p>No notifications 🔕</p>";
+                    "<p>" +
+                    translations[
+                        currentLanguage
+                    ].noNotifications +
+                    " 🔕</p>";
 
                 updateNotificationBadge();
 
@@ -1069,7 +1046,6 @@
                         document.createElement(
                             "div"
                         );
-
 
                     item.className =
                         "notification";
@@ -1094,7 +1070,9 @@
                         <button
                             onclick="deleteNotification(${notification.id})">
 
-                            Delete
+                            ${translations[
+                                currentLanguage
+                            ].delete}
 
                         </button>
 
@@ -1161,11 +1139,8 @@
 
 
             badge.textContent =
-
                 unread > 0
-
                     ? " (" + unread + ")"
-
                     : "";
 
         }
@@ -1184,7 +1159,7 @@
 
 
         /* =========================
-           LANGUAGE
+           LANGUAGE TRANSLATIONS
         ========================= */
 
         const translations = {
@@ -1204,9 +1179,70 @@
                     "Settings",
 
                 logout:
-                    "Logout"
+                    "Logout",
+
+                congratulations:
+                    "Congratulations 🎊",
+
+                welcome:
+                    "Welcome! 👋",
+
+                welcomeWithName:
+                    "Welcome, ",
+
+                welcomeText:
+                    "Welcome to your personal dashboard.",
+
+                balanceAdded:
+                    "Balance has been added, process your withdraw now.",
+
+                availableBalance:
+                    "Available Balance",
+
+                hide:
+                    "Hide",
+
+                show:
+                    "Show",
+
+                withdraw:
+                    "Withdraw",
+
+                address:
+                    "Address",
+
+                security:
+                    "Security",
+
+                status:
+                    "Status",
+
+                active:
+                    "Active",
+
+                name:
+                    "Name:",
+
+                email:
+                    "Email:",
+
+                clearNotifications:
+                    "Clear Notifications",
+
+                delete:
+                    "Delete",
+
+                noNotifications:
+                    "No notifications",
+
+                emailNotifications:
+                    "Email notifications: ON",
+
+                accountSecurity:
+                    "Account security: Enabled"
 
             },
+
 
             es: {
 
@@ -1223,12 +1259,76 @@
                     "Configuración",
 
                 logout:
-                    "Cerrar sesión"
+                    "Cerrar sesión",
+
+                congratulations:
+                    "Felicidades 🎊",
+
+                welcome:
+                    "¡Bienvenido! 👋",
+
+                welcomeWithName:
+                    "¡Bienvenido, ",
+
+                welcomeText:
+                    "Bienvenido a tu panel personal.",
+
+                balanceAdded:
+                    "El saldo ha sido añadido, procesa tu retiro ahora.",
+
+                availableBalance:
+                    "Saldo disponible",
+
+                hide:
+                    "Ocultar",
+
+                show:
+                    "Mostrar",
+
+                withdraw:
+                    "Retirar",
+
+                address:
+                    "Dirección",
+
+                security:
+                    "Seguridad",
+
+                status:
+                    "Estado",
+
+                active:
+                    "Activo",
+
+                name:
+                    "Nombre:",
+
+                email:
+                    "Correo electrónico:",
+
+                clearNotifications:
+                    "Borrar notificaciones",
+
+                delete:
+                    "Eliminar",
+
+                noNotifications:
+                    "No hay notificaciones",
+
+                emailNotifications:
+                    "Notificaciones por correo: ACTIVADAS",
+
+                accountSecurity:
+                    "Seguridad de la cuenta: Activada"
 
             }
 
         };
 
+
+        /* =========================
+           CURRENT LANGUAGE
+        ========================= */
 
         let currentLanguage =
             localStorage.getItem(
@@ -1236,13 +1336,19 @@
             ) || "en";
 
 
+        /* =========================
+           APPLY LANGUAGE
+        ========================= */
+
         function applyLanguage() {
 
             const t =
                 translations[
                     currentLanguage
-                ];
+                ] || translations.en;
 
+
+            /* SIDEBAR + PROFILE */
 
             document
                 .querySelectorAll(
@@ -1252,23 +1358,301 @@
                     function(element) {
 
                         const key =
-                            element
-                                .getAttribute(
-                                    "data-i18n"
-                                );
+                            element.getAttribute(
+                                "data-i18n"
+                            );
 
                         if (t[key]) {
 
-                            element.textContent =
-                                t[key];
+                            if (
+                                element.id ===
+                                "profileButton"
+                            ) {
+
+                                element.textContent =
+                                    "👤 " + t[key];
+
+                            } else {
+
+                                /*
+                                 * Preserve notification badge
+                                 * inside Notifications button
+                                 */
+
+                                if (
+                                    element.querySelector(
+                                        "#notificationBadge"
+                                    )
+                                ) {
+
+                                    const badge =
+                                        document.getElementById(
+                                            "notificationBadge"
+                                        );
+
+                                    element.innerHTML =
+                                        "🔔 " +
+                                        t[key] +
+                                        " ";
+
+                                    element.appendChild(
+                                        badge
+                                    );
+
+                                } else {
+
+                                    /*
+                                     * Preserve emojis
+                                     */
+
+                                    const emoji =
+                                        getEmoji(
+                                            element.textContent
+                                        );
+
+                                    element.textContent =
+                                        emoji +
+                                        t[key];
+
+                                }
+
+                            }
 
                         }
 
                     }
                 );
 
+
+            /* TOP TITLE */
+
+            document.getElementById(
+                "pageTitle"
+            ).textContent =
+                getPageTitle();
+
+
+            /* WELCOME */
+
+            const welcomeMessage =
+                document.getElementById(
+                    "welcomeMessage"
+                );
+
+
+            if (savedAccount && accountName !== "User") {
+
+                welcomeMessage.textContent =
+                    t.welcomeWithName +
+                    accountName +
+                    "! 👋";
+
+            } else {
+
+                welcomeMessage.textContent =
+                    t.welcome;
+
+            }
+
+
+            document.getElementById(
+                "welcomeText"
+            ).innerHTML =
+                t.welcomeText +
+                "<br>" +
+                t.balanceAdded;
+
+
+            /* BALANCE */
+
+            document.getElementById(
+                "balanceTitle"
+            ).textContent =
+                t.availableBalance;
+
+
+            updateHideButton();
+
+
+            document.getElementById(
+                "withdrawButton"
+            ).textContent =
+                "💸 " + t.withdraw;
+
+
+            /* ADDRESS */
+
+            document.getElementById(
+                "addressTitle"
+            ).textContent =
+                t.address;
+
+
+            /* STATUS */
+
+            document.getElementById(
+                "securityTitle"
+            ).textContent =
+                t.security;
+
+
+            document.getElementById(
+                "statusTitle"
+            ).textContent =
+                t.status;
+
+
+            document.getElementById(
+                "activeStatus"
+            ).textContent =
+                t.active;
+
+
+            /* PROFILE */
+
+            document.getElementById(
+                "profileTitle"
+            ).textContent =
+                "👤 " + t.profile;
+
+
+            document.getElementById(
+                "nameLabel"
+            ).textContent =
+                t.name;
+
+
+            document.getElementById(
+                "emailLabel"
+            ).textContent =
+                t.email;
+
+
+            /* NOTIFICATIONS */
+
+            document.getElementById(
+                "notificationsTitle"
+            ).textContent =
+                "🔔 " + t.notifications;
+
+
+            document.getElementById(
+                "clearButton"
+            ).textContent =
+                t.clearNotifications;
+
+
+            /* SETTINGS */
+
+            document.getElementById(
+                "settingsTitle"
+            ).textContent =
+                "⚙️ " + t.settings;
+
+
+            document.getElementById(
+                "emailNotifications"
+            ).textContent =
+                t.emailNotifications;
+
+
+            document.getElementById(
+                "accountSecurity"
+            ).textContent =
+                t.accountSecurity;
+
+
+            /* NOTIFICATION LIST */
+
+            displayNotifications();
+
+
+            /* HTML LANGUAGE */
+
+            document.documentElement.lang =
+                currentLanguage;
+
         }
 
+
+        /* =========================
+           PAGE TITLE
+        ========================= */
+
+        function getPageTitle() {
+
+            const t =
+                translations[
+                    currentLanguage
+                ] || translations.en;
+
+
+            const titles = {
+
+                home:
+                    t.congratulations,
+
+                profile:
+                    t.profile,
+
+                notifications:
+                    t.notifications,
+
+                settings:
+                    t.settings
+
+            };
+
+
+            return titles[currentPage];
+
+        }
+
+
+        function updatePageTitle() {
+
+            document.getElementById(
+                "pageTitle"
+            ).textContent =
+                getPageTitle();
+
+        }
+
+
+        /* =========================
+           EMOJI HELPER
+        ========================= */
+
+        function getEmoji(text) {
+
+            if (text.includes("🏠")) {
+                return "🏠 ";
+            }
+
+            if (text.includes("🔔")) {
+                return "🔔 ";
+            }
+
+            if (text.includes("⚙️")) {
+                return "⚙️ ";
+            }
+
+            if (text.includes("🚪")) {
+                return "🚪 ";
+            }
+
+            if (text.includes("👤")) {
+                return "👤 ";
+            }
+
+            return "";
+
+        }
+
+
+        /* =========================
+           CHANGE LANGUAGE
+        ========================= */
 
         function changeLanguage() {
 
@@ -1289,13 +1673,36 @@
         }
 
 
+        /* =========================
+           MOBILE MENU
+        ========================= */
+
+        function toggleMenu() {
+
+            document
+                .getElementById("sidebar")
+                .classList.toggle("show");
+
+        }
+
+
+        /* =========================
+           START LANGUAGE
+        ========================= */
+
         document
             .getElementById(
                 "languageSelect"
-            )
-            .value =
+            ).value =
             currentLanguage;
 
+
+        /* APPLY SAVED LANGUAGE */
+
+        applyLanguage();
+
+
+        /* LOAD NOTIFICATIONS */
 
         displayNotifications();
 
