@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Withdrawal Confirmation</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .confirmation-box {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            padding: 35px 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .success-icon {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 20px;
+            background: #dcfce7;
+            color: #16a34a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        h1 {
+            color: #172554;
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .message {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .status {
+            background: #dcfce7;
+            color: #166534;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .back-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: #172554;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: #1e3a8a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="confirmation-box">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h1>
+            Withdrawal Request Submitted
+        </h1>
+
+        <p class="message">
+            Your withdrawal request has been submitted successfully.
+            Please wait while your request is being processed.
+        </p>
+
+        <div class="status">
+            ✅ Withdrawal request submitted
+        </div>
+
+        <a
+            href="dashboard.html"
+            class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+
+</html>
