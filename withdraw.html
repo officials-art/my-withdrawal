@@ -198,8 +198,6 @@
             font-weight: bold;
         }
 
-        /* HOLD MESSAGE */
-
         .hold-message {
             text-align: center;
             padding: 30px 15px;
@@ -222,12 +220,7 @@
 
     <div class="withdraw-box">
 
-        <!-- =========================================
-             PAGE SWITCH
-             
-             false = page on hold
-             true  = normal withdrawal page
-        ========================================== -->
+        <!-- PAGE SWITCH -->
 
         <script>
             const withdrawPageEnabled = true;
@@ -478,7 +471,6 @@
                 holdText:
                     "There are some processes that need to be done. Please check back later.",
 
-
                 withdrawTitle:
                     "💸 Withdrawal Section",
 
@@ -533,9 +525,6 @@
                 insufficientBalance:
                     "Insufficient balance.",
 
-                incorrectCode:
-                    "Incorrect Apple code.",
-
                 success:
                     "✅ Withdrawal request submitted"
 
@@ -549,7 +538,6 @@
 
                 holdText:
                     "Hay algunos procesos que deben completarse. Por favor, vuelve a consultar más tarde.",
-
 
                 withdrawTitle:
                     "💸 Sección de retiros",
@@ -605,9 +593,6 @@
                 insufficientBalance:
                     "Saldo insuficiente.",
 
-                incorrectCode:
-                    "Código Apple incorrecto.",
-
                 success:
                     "✅ Solicitud de retiro enviada"
 
@@ -632,8 +617,6 @@
                 translations[language];
 
 
-            /* HOLD MESSAGE */
-
             document.getElementById(
                 "holdTitle"
             ).textContent =
@@ -645,8 +628,6 @@
             ).textContent =
                 t.holdText;
 
-
-            /* NORMAL WITHDRAWAL PAGE */
 
             document.getElementById(
                 "withdrawTitle"
@@ -744,8 +725,6 @@
                 t.backButton;
 
 
-            /* SAVE LANGUAGE */
-
             localStorage.setItem(
                 "language",
                 language
@@ -753,8 +732,6 @@
 
         }
 
-
-        /* GET SAVED LANGUAGE */
 
         const savedLanguage =
             localStorage.getItem(
@@ -770,8 +747,6 @@
             savedLanguage
         );
 
-
-        /* CHANGE LANGUAGE */
 
         languageSelect.addEventListener(
             "change",
@@ -806,9 +781,7 @@
                 "block";
 
 
-            /* =========================
-               GET SIGNED-UP USER NAME
-            ========================= */
+            /* GET SIGNED-UP USER NAME */
 
             function displayUserName() {
 
@@ -863,25 +836,13 @@
             displayUserName();
 
 
-            /* =========================
-               DEFAULT WITHDRAWAL
-            ========================= */
+            /* DEFAULT WITHDRAWAL */
 
             const withdrawalAmount =
                 5000;
 
 
-            /* =========================
-               APPLE CODE
-            ========================= */
-
-            const correctAppleCode =
-                "17844379";
-
-
-            /* =========================
-               ACCOUNT BALANCE
-            ========================= */
+            /* ACCOUNT BALANCE */
 
             function getBalance() {
 
@@ -908,9 +869,7 @@
             displayBalance();
 
 
-            /* =========================
-               WITHDRAW FORM
-            ========================= */
+            /* WITHDRAW FORM */
 
             document.getElementById(
                 "withdrawForm"
@@ -981,24 +940,6 @@
 
                         error.textContent =
                             t.emptyFields;
-
-                        error.style.display =
-                            "block";
-
-                        return;
-
-                    }
-
-
-                    /* CHECK APPLE CODE */
-
-                    if (
-                        code !==
-                        correctAppleCode
-                    ) {
-
-                        error.textContent =
-                            t.incorrectCode;
 
                         error.style.display =
                             "block";
