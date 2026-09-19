@@ -117,6 +117,10 @@
             font-size: 16px;
             font-weight: bold;
         }
+
+        .back-btn:hover {
+            background: #1e3a8a;
+        }
     </style>
 </head>
 
@@ -125,16 +129,9 @@
     <div class="confirmation-box">
 
         <!-- PAGE SWITCH -->
-        <script>
-            const confirmationPageEnabled = true;
-        </script>
-
-        <!-- HOLD MESSAGE -->
         <div id="holdMessage" class="hold-message" style="display: none;">
 
-            <h2>
-                🚧 Page Temporarily Unavailable
-            </h2>
+            <h2>🚧 Page Temporarily Unavailable</h2>
 
             <p>
                 There are some processes that need to be done.
@@ -160,11 +157,11 @@
 
             <p class="message">
                 Your withdrawal request has been submitted successfully.
+                Please wait while your request is being processed.
             </p>
 
             <div class="contact">
-                For more information, please contact our Agent
-                on WhatsApp:<br>
+                For more information, please contact our Agent on WhatsApp:<br>
 
                 <strong>+1 587 838-9194</strong>
 
@@ -193,15 +190,15 @@
            PAGE SWITCH
         ========================= */
 
+        const confirmationPageEnabled = true;
+
         if (confirmationPageEnabled === false) {
 
-            document.getElementById("holdMessage").style.display =
-                "block";
+            document.getElementById("holdMessage").style.display = "block";
 
         } else {
 
-            document.getElementById("confirmationContent").style.display =
-                "block";
+            document.getElementById("confirmationContent").style.display = "block";
 
 
             /* =========================
@@ -233,215 +230,6 @@
         }
 
     </script>
-
-</body>
-
-</html>        .success-icon {
-            width: 75px;
-            height: 75px;
-            margin: 0 auto 20px;
-            background: #dcfce7;
-            color: #16a34a;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-        }
-
-        h1 {
-            color: #172554;
-            font-size: 25px;
-            margin-bottom: 15px;
-        }
-
-        .user-name {
-            color: #172554;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .message {
-            color: #666;
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .contact {
-            background: #f8fafc;
-            padding: 18px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            color: #444;
-            font-size: 15px;
-            line-height: 1.7;
-        }
-
-        .contact strong {
-            color: #172554;
-        }
-
-        .status {
-            background: #dcfce7;
-            color: #166534;
-            padding: 14px;
-            border-radius: 8px;
-            font-weight: bold;
-            margin-bottom: 25px;
-        }
-
-        .back-btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            background: #172554;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .back-btn:hover {
-            background: #1e3a8a;
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="confirmation-box">
-
-        <div class="success-icon">
-            ✓
-        </div>
-
-        <h1>
-            Withdrawal Request Submitted
-        </h1>
-
-        <div class="user-name">
-            Dear <span id="userName">User</span>,
-        </div>
-
-        <p class="message">
-            Your withdrawal request has been submitted successfully.
-        </p>
-
-        <div class="contact">
-            For more information, please contact our Agent on WhatsApp:<br>
-            <strong>+1 587 838-9194</strong>
-
-            <br><br>
-
-            Or E-mail:<br>
-            <strong>trustconsultant10@gmail.com</strong>
-        </div>
-
-        <div class="status">
-            ✅ Withdrawal request submitted
-        </div>
-
-        <a href="dashboard.html" class="back-btn">
-            ← Back to Dashboard
-        </a>
-
-    </div>
-
-    <script>
-        // Get the user's full name saved during signup/login
-        const savedName = localStorage.getItem("fullName");
-
-        if (savedName) {
-            document.getElementById("userName").textContent = savedName;
-        }
-    </script>
-
-</body>
-
-</html>        .success-icon {
-            width: 75px;
-            height: 75px;
-            margin: 0 auto 20px;
-            background: #dcfce7;
-            color: #16a34a;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-        }
-
-        h1 {
-            color: #172554;
-            font-size: 25px;
-            margin-bottom: 15px;
-        }
-
-        .message {
-            color: #666;
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .status {
-            background: #dcfce7;
-            color: #166534;
-            padding: 14px;
-            border-radius: 8px;
-            font-weight: bold;
-            margin-bottom: 25px;
-        }
-
-        .back-btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            background: #172554;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .back-btn:hover {
-            background: #1e3a8a;
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="confirmation-box">
-
-        <div class="success-icon">
-            ✓
-        </div>
-
-        <h1>
-            Withdrawal Request Submitted
-        </h1>
-
-        <p class="message">
-            Your withdrawal request has been submitted successfully.
-            Please wait while your request is being processed.
-        </p>
-
-        <div class="status">
-            ✅ Withdrawal request submitted
-        </div>
-
-        <a
-            href="dashboard.html"
-            class="back-btn">
-            ← Back to Dashboard
-        </a>
-
-    </div>
 
 </body>
 
