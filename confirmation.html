@@ -34,6 +34,20 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
+        .language-box {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        #languageSelect {
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 14px;
+            background: white;
+        }
+
         .hold-message {
             text-align: center;
             padding: 30px 15px;
@@ -128,61 +142,124 @@
 
     <div class="confirmation-box">
 
+        <!-- LANGUAGE SELECTOR -->
+        <div class="language-box">
+
+            <select id="languageSelect">
+
+                <option value="en">
+                    🇬🇧 English
+                </option>
+
+                <option value="es">
+                    🇪🇸 Español
+                </option>
+
+            </select>
+
+        </div>
+
+
         <!-- PAGE SWITCH -->
-        <div id="holdMessage" class="hold-message" style="display: none;">
 
-            <h2>🚧 Page Temporarily Unavailable</h2>
+        <div id="holdMessage"
+             class="hold-message"
+             style="display: none;">
 
-            <p>
+            <h2 id="holdTitle">
+                🚧 Page Temporarily Unavailable
+            </h2>
+
+            <p id="holdText">
                 There are some processes that need to be done.
                 Please check back later.
             </p>
 
         </div>
 
+
         <!-- CONFIRMATION CONTENT -->
-        <div id="confirmationContent" style="display: none;">
+
+        <div id="confirmationContent"
+             style="display: none;">
 
             <div class="success-icon">
                 ✓
             </div>
 
-            <h1>
+
+            <h1 id="confirmationTitle">
                 Withdrawal Request Submitted
             </h1>
 
-            <div class="user-name">
-                Dear <span id="userName">User</span>,
+
+            <div class="user-name"
+                 id="userGreeting">
+
+                Dear <span id="userName">
+                    User
+                </span>,
+
             </div>
 
-            <p class="message">
+
+            <p class="message"
+               id="confirmationMessage">
+
                 Your withdrawal request has been submitted successfully.
                 Please wait while your request is being processed.
+
             </p>
 
-            <div class="contact">
-                For more information, please contact our Agent on WhatsApp:<br>
 
-                <strong>+1 587 838-9194</strong>
+            <div class="contact">
+
+                <span id="contactText">
+                    For more information, please contact our Agent
+                    on WhatsApp:
+                </span>
+
+                <br>
+
+                <strong>
+                    +1 587 838-9194
+                </strong>
 
                 <br><br>
 
-                Or E-mail:<br>
+                <span id="emailText">
+                    Or E-mail:
+                </span>
 
-                <strong>trustconsultant10@gmail.com</strong>
+                <br>
+
+                <strong>
+                    trustconsultant10@gmail.com
+                </strong>
+
             </div>
 
-            <div class="status">
+
+            <div class="status"
+                 id="statusMessage">
+
                 ✅ Withdrawal request submitted
+
             </div>
 
-            <a href="dashboard.html" class="back-btn">
+
+            <a href="dashboard.html"
+               class="back-btn"
+               id="backButton">
+
                 ← Back to Dashboard
+
             </a>
 
         </div>
 
     </div>
+
 
     <script>
 
@@ -192,40 +269,249 @@
 
         const confirmationPageEnabled = true;
 
-        if (confirmationPageEnabled === false) {
 
-            document.getElementById("holdMessage").style.display = "block";
+        /* =========================
+           TRANSLATIONS
+        ========================= */
 
-        } else {
+        const translations = {
 
-            document.getElementById("confirmationContent").style.display = "block";
+            en: {
+
+                holdTitle:
+                    "🚧 Page Temporarily Unavailable",
+
+                holdText:
+                    "There are some processes that need to be done. Please check back later.",
+
+                confirmationTitle:
+                    "Withdrawal Request Submitted",
+
+                dear:
+                    "Dear",
+
+                message:
+                    "Your withdrawal request has been submitted successfully. Please wait while your request is being processed.",
+
+                contact:
+                    "For more information, please contact our Agent on WhatsApp:",
+
+                email:
+                    "Or E-mail:",
+
+                status:
+                    "✅ Withdrawal request submitted",
+
+                back:
+                    "← Back to Dashboard"
+
+            },
 
 
-            /* =========================
-               GET USER'S FULL NAME
-            ========================= */
+            es: {
+
+                holdTitle:
+                    "🚧 Página temporalmente no disponible",
+
+                holdText:
+                    "Hay algunos procesos que deben completarse. Por favor, vuelve a consultar más tarde.",
+
+                confirmationTitle:
+                    "Solicitud de retiro enviada",
+
+                dear:
+                    "Estimado/a",
+
+                message:
+                    "Su solicitud de retiro se ha enviado correctamente. Espere mientras se procesa su solicitud.",
+
+                contact:
+                    "Para obtener más información, comuníquese con nuestro agente por WhatsApp:",
+
+                email:
+                    "O correo electrónico:",
+
+                status:
+                    "✅ Solicitud de retiro enviada",
+
+                back:
+                    "← Volver al panel"
+
+            }
+
+        };
+
+
+        /* =========================
+           GET USER NAME
+        ========================= */
+
+        function displayUserName() {
 
             const savedAccount =
                 localStorage.getItem("demoAccount");
 
-            if (savedAccount) {
 
-                try {
+            if (!savedAccount) {
 
-                    const account =
-                        JSON.parse(savedAccount);
+                document.getElementById("userName").textContent =
+                    "User";
 
-                    document.getElementById("userName").textContent =
-                        account.name || "User";
-
-                } catch (error) {
-
-                    document.getElementById("userName").textContent =
-                        "User";
-
-                }
+                return;
 
             }
+
+
+            try {
+
+                const account =
+                    JSON.parse(savedAccount);
+
+
+                document.getElementById("userName").textContent =
+                    account.name || "User";
+
+
+            } catch (error) {
+
+                document.getElementById("userName").textContent =
+                    "User";
+
+            }
+
+        }
+
+
+        /* =========================
+           LANGUAGE SYSTEM
+        ========================= */
+
+        const languageSelect =
+            document.getElementById("languageSelect");
+
+
+        function setLanguage(language) {
+
+            const t =
+                translations[language] || translations.en;
+
+
+            document.documentElement.lang =
+                language;
+
+
+            languageSelect.value =
+                language;
+
+
+            document.getElementById("holdTitle").textContent =
+                t.holdTitle;
+
+
+            document.getElementById("holdText").textContent =
+                t.holdText;
+
+
+            document.getElementById("confirmationTitle").textContent =
+                t.confirmationTitle;
+
+
+            const name =
+                document.getElementById("userName").textContent;
+
+
+            document.getElementById("userGreeting").innerHTML =
+                t.dear + " <span id='userName'>" +
+                name +
+                "</span>,";
+
+
+            document.getElementById("confirmationMessage").textContent =
+                t.message;
+
+
+            document.getElementById("contactText").textContent =
+                t.contact;
+
+
+            document.getElementById("emailText").textContent =
+                t.email;
+
+
+            document.getElementById("statusMessage").textContent =
+                t.status;
+
+
+            document.getElementById("backButton").textContent =
+                t.back;
+
+
+            /* SAVE LANGUAGE */
+
+            localStorage.setItem(
+                "language",
+                language
+            );
+
+        }
+
+
+        /* =========================
+           LOAD SAVED LANGUAGE
+        ========================= */
+
+        const savedLanguage =
+            localStorage.getItem("language") || "en";
+
+
+        languageSelect.value =
+            savedLanguage;
+
+
+        /* =========================
+           LOAD USER NAME FIRST
+        ========================= */
+
+        displayUserName();
+
+
+        /* =========================
+           APPLY SAVED LANGUAGE
+        ========================= */
+
+        setLanguage(savedLanguage);
+
+
+        /* =========================
+           CHANGE LANGUAGE
+        ========================= */
+
+        languageSelect.addEventListener(
+            "change",
+            function () {
+
+                setLanguage(this.value);
+
+            }
+        );
+
+
+        /* =========================
+           PAGE SWITCH
+        ========================= */
+
+        if (confirmationPageEnabled === false) {
+
+            document.getElementById(
+                "holdMessage"
+            ).style.display = "block";
+
+
+        } else {
+
+            document.getElementById(
+                "confirmationContent"
+            ).style.display = "block";
 
         }
 
